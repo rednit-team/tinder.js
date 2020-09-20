@@ -29,9 +29,9 @@ const req = async (route, method, body) => {
 
 const get = async (route) => await req(route);
 
-const post = async (route, body) => await req(route, 'POST').body(body);
+const post = async (route, body) => await req(route, 'POST', body);
 
-const put = async (route, body) => await req(route, 'PUT').body(body);
+const put = async (route, body) => await req(route, 'PUT', body);
 
 const del = async (route) => await req(route, 'DELETE');
 

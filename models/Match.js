@@ -32,8 +32,19 @@ class Match {
 	}
 
 	async getMessages(count = 60, pageToken) {
-		const res = await http.get(`/v2/matches/${this.id}/messages?count=${count}${pageToken ? `&page_token=${pageToken}` : ''}`);
-		return res.data.messages.map(message => new Message(message));
+		let res = await http.get(`/v2/matches/${this.id}/messages?count=${count}${pageToken ? `&page_token=${pageToken}` : ''}`);
+		const messages = res.data.messages.map(message => new Message(message));
+		if (count > 60) {
+			while (messages.count < count) {
+				res = await http.get(`/v2/matches/${this.id}/messages?count=${count}&page_token=${res.page_token}`);
+				messages.push(res.data.messages.map(message => new Message(message)));
+			}
+		}
+		return messages.splice(0, count);
+	}
+
+	async unmatch() {
+		await http.delete(`/user/matches/${this.id}`);
 	}
 
 }
