@@ -4,7 +4,9 @@
   "description": "Javascript Wrapper for the Tinder API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint '**/*.js'",
+    "lint:fix": "eslint '**/*.js' --fix"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,9 @@
   "homepage": "https://github.com/puf17640/tinder.js#readme",
   "dependencies": {
     "@aero/centra": "1.0.6"
+  },
+  "devDependencies": {
+    "@aero/eslint-config": "1.0.5",
+    "eslint": "7.9.0"
   }
 }
