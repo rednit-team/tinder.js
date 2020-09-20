@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/puf17640/tinder.js/issues"
   },
-  "homepage": "https://github.com/puf17640/tinder.js#readme"
+  "homepage": "https://github.com/puf17640/tinder.js#readme",
+  "dependencies": {
+    "@aero/centra": "1.0.6"
+  }
 }
