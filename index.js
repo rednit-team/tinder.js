@@ -7,11 +7,15 @@ class Tinder {
 		http.setToken(authToken);
 	}
 
+	async resetUsername() {
+		return this.changeUsername();
+	}
+
 	async changeUsername(username) {
 		if (!username) {
-			await http.delete('/profile/username')
+			await http.delete('/profile/username');
 		} else {
-			await http.put('/profile/username', { username })
+			await http.put('/profile/username', { username });
 		}
 	}
 
@@ -25,9 +29,9 @@ class Tinder {
 
 	async changePreferences(ageFilterMin, ageFilterMax, genderFilter, gender, distanceFilter, hideAge, hideDistance, hideAds, blend, discoverableParty) {
 		const res = await http.post('/profile',
-			Object.fromEntries([ageFilterMin, ageFilterMax, genderFilter, gender, distanceFilter, hideAge, hideDistance, hideAds, blend, discoverableParty]
-				.filter(val => Number.isInteger(val) || val === false || val === true || ['recency', 'optimal', 'liked'].includes(val))
-				.map(val => [val.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(), val])));
+			Object.fromEntries(Object.entries({ ageFilterMin, ageFilterMax, genderFilter, gender, distanceFilter, hideAge, hideDistance, hideAds, blend, discoverableParty })
+				.filter(([, val]) => Number.isInteger(val) || val === false || val === true || ['recency', 'optimal', 'liked'].includes(val))
+				.map(([key, val]) => [key.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(), val])));
 		return new Profile(res);
 	}
 
