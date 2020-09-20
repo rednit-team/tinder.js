@@ -3,7 +3,6 @@ const request = require('@aero/centra');
 const baseUrl = 'https://api.gotinder.com';
 
 const headers = {
-	platform: 'web',
 	'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36',
 	Accept: 'application/json',
 	'X-Auth-Token': ''
