@@ -12,6 +12,7 @@
 			{
 				"allowTernary": true
 			}
-		]
+		],
+		"curly": 0
 	}
 }

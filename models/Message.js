@@ -25,7 +25,7 @@ class Message {
 	}
 
 	async like() {
-		await http.post(`/message/${this.id}/like`)
+		await http.post(`/message/${this.id}/like`);
 	}
 
 }

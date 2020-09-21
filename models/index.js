@@ -5,4 +5,12 @@ const User = require('./User'),
 	Profile = require('./Profile'),
 	{ TopArtist, Track } = require('./Spotify');
 
-module.exports = { User, Profile, Match, Message, InstagramInfo, TopArtist, Track };
+module.exports = {
+	User,
+	Profile,
+	Match,
+	Message,
+	InstagramInfo,
+	TopArtist,
+	Track
+};

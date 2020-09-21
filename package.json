@@ -4,7 +4,7 @@
   "description": "Javascript Wrapper for the Tinder API",
   "main": "index.js",
   "scripts": {
-    "test": "node index.spec.js",
+    "test": "mocha index.spec.js --exit",
     "lint": "eslint '**/*.js'",
     "lint:fix": "eslint '**/*.js' --fix"
   },
@@ -28,6 +28,8 @@
   },
   "devDependencies": {
     "@aero/eslint-config": "1.0.5",
-    "eslint": "7.9.0"
+    "eslint": "7.9.0",
+    "chai": "4.2.0",
+    "mocha": "8.1.3"
   }
 }

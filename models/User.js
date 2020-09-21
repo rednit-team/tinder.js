@@ -1,4 +1,7 @@
-const [{ TopArtist, Track }, InstagramInfo] = [require('./Spotify'), require('./Instagram')];
+const [{ TopArtist, Track }, InstagramInfo] = [
+	require('./Spotify'),
+	require('./Instagram')
+];
 const http = require('../http');
 
 class User {
@@ -9,8 +12,8 @@ class User {
 		this.birthdate = new Date(user.birth_date);
 		this.bio = user.bio.trim();
 		this.distance = user.distance_mi;
-		this.photos = user.photos.map(photo => photo.url);
-		this.spotifyTopArtists = user.spotify_top_artists?.map(artist => new TopArtist(artist));
+		this.photos = user.photos.map((photo) => photo.url);
+		this.spotifyTopArtists = user.spotify_top_artists?.map((artist) => new TopArtist(artist));
 		this.spotifyThemeTrack = user.spotify_theme_track ? new Track(user.spotify_theme_track) : undefined;
 		this.instagram = user.instagram ? new InstagramInfo(user.instagram) : undefined;
 	}

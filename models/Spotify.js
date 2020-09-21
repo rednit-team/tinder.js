@@ -26,7 +26,7 @@ class Album {
 	constructor(album) {
 		this.albumId = album.id;
 		this.name = album.name;
-		this.images = Object.fromEntries(album.images.map(image => [image.height, image.url]));
+		this.images = Object.fromEntries(album.images.map((image) => [image.height, image.url]));
 	}
 
 	getImageUrl(resolution = 640) {

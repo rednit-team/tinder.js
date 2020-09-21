@@ -4,7 +4,7 @@ class InstagramInfo {
 		this.lastFetch = new Date(info.last_fetch_time);
 		this.completedInitialFetch = info.completed_initial_fetch;
 		this.mediaCount = info.media_count;
-		this.photos = info.photos.map(photo => new InstagramPhoto(photo));
+		this.photos = info.photos.map((photo) => new InstagramPhoto(photo));
 	}
 
 }
