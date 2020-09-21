@@ -18,7 +18,11 @@ const req = async (route, method, body) => {
 	fetch.reqHeaders = headers;
 	const res = await fetch.body(body).send();
 	if (res.statusCode >= 200 && res.statusCode < 300) {
-		return res.json;
+		try {
+			return res.json;
+		} catch {
+			return res.statusCode
+		}
 	} else if (res.statusCode >= 400 && res.statusCode < 500) {
 		throw res.text;
 	} else {

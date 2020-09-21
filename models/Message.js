@@ -24,6 +24,10 @@ class Message {
 		return new Match(res.results);
 	}
 
+	async like() {
+		await http.post(`/message/${this.id}/like`)
+	}
+
 }
 
 module.exports = Message;

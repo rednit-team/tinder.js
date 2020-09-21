@@ -7,6 +7,10 @@ class Tinder {
 		http.setToken(authToken);
 	}
 
+	async reportUser(id, cause, explanation) {
+		return !id || id.length === 0 ? {} : await http.post(`/report/${id}`, { cause, explanation });
+	}
+
 	async resetUsername() {
 		return this.changeUsername();
 	}
@@ -25,6 +29,15 @@ class Tinder {
 
 	async changeLocation(lat, lon) {
 		await http.post('/user/ping', { lat, lon });
+	}
+
+	async resetLocation() {
+		await http.post('/passport/user/reset')
+	}
+
+	async getLikeCount() {
+		const res = await http.get('/v2/fast-match/count');
+		return res.data.count;
 	}
 
 	async changePreferences(ageFilterMin, ageFilterMax, genderFilter, gender, distanceFilter, hideAge, hideDistance, hideAds, blend, discoverableParty) {
