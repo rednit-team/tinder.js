@@ -7,6 +7,10 @@ class Tinder {
 		http.setToken(authToken);
 	}
 
+	async getUpdatesSince(date) {
+		return await http.post('/updates', { last_activity_date: date.toISOString() })
+	}
+	
 	async getSwipes() {
 		const swipes = await http.get('/v2/recs/core');
 		return swipes.data.results.map(swipe => new Swipe(swipe));
