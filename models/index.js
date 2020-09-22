@@ -3,6 +3,7 @@ const User = require('./User'),
 	Message = require('./Message'),
 	InstagramInfo = require('./Instagram'),
 	Profile = require('./Profile'),
+	Swipe = require('./Swipe'),
 	{ TopArtist, Track } = require('./Spotify');
 
 module.exports = {
@@ -12,5 +13,6 @@ module.exports = {
 	Message,
 	InstagramInfo,
 	TopArtist,
-	Track
+	Track,
+	Swipe
 };

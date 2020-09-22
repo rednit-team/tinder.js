@@ -7,7 +7,7 @@ class User {
 		this.id = user._id;
 		this.name = user.name.trim();
 		this.birthdate = new Date(user.birth_date);
-		this.age = new Date().getFullYear() - new Date(user.birth_date).getFullYear();
+		this.age = new Date().getFullYear() - this.birthdate.getFullYear();
 		this.bio = user.bio.trim();
 		this.distance = user.distance_mi;
 		this.photos = user.photos.map((photo) => photo.url);

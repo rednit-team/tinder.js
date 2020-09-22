@@ -1,10 +1,15 @@
 const http = require('./http');
-const { User, Message, Match, Profile, Meta } = require('./models');
+const { User, Message, Match, Profile, Swipe } = require('./models');
 
 class Tinder {
 
 	constructor(authToken) {
 		http.setToken(authToken);
+	}
+
+	async getSwipes() {
+		const swipes = await http.get('/v2/recs/core');
+		return swipes.data.results.map(swipe => new Swipe(swipe));
 	}
 
 	async getMeta() {
