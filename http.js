@@ -21,7 +21,7 @@ const req = async (route, method, body) => {
 		try {
 			return res.json;
 		} catch {
-			return res.statusCode;
+			return { status: res.statusCode };
 		}
 	} else if (res.statusCode >= 400 && res.statusCode < 500) {
 		throw res.text;

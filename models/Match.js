@@ -1,4 +1,4 @@
-const [User, Message] = [require('./User'), require('./Message')];
+const User = require('./User');
 const http = require('../http');
 
 class Match {
@@ -22,16 +22,18 @@ class Match {
 	}
 
 	async getUser() {
-		const res = await http.get(`/user/${this.id}`);
+		const res = await http.get(`/user/${this.userId}`);
 		return new User(res.results);
 	}
 
 	async sendMessage(content) {
+		const Message = require('./Message');
 		const res = await http.post(`/user/matches/${this.id}`, { message: content });
 		return new Message(res.results);
 	}
 
 	async getMessages(count = 60, pageToken) {
+		const Message = require('./Message');
 		let res = await http.get(`/v2/matches/${this.id}/messages?count=${count}${pageToken ? `&page_token=${pageToken}` : ''}`);
 		const messages = res.data.messages.map((message) => new Message(message));
 		if (count > 60) {

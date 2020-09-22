@@ -1,10 +1,15 @@
 const http = require('./http');
-const { User, Message, Match, Profile } = require('./models');
+const { User, Message, Match, Profile, Meta } = require('./models');
 
 class Tinder {
 
 	constructor(authToken) {
 		http.setToken(authToken);
+	}
+
+	async getMeta() {
+		const meta = await http.get('/v2/meta');
+		return meta.data;
 	}
 
 	async reportUser(id, cause, explanation) {
@@ -40,12 +45,12 @@ class Tinder {
 		return res.data.count;
 	}
 
-	async changePreferences(ageFilterMin, ageFilterMax, genderFilter, gender, distanceFilter, hideAge, hideDistance, hideAds, blend, discoverableParty) {
-		const res = await http.post('/profile', Object.fromEntries(
-			Object.entries({ ageFilterMin, ageFilterMax, genderFilter, gender, distanceFilter, hideAge, hideDistance, hideAds, blend, discoverableParty })
-				.filter(([, val]) => Number.isInteger(val) || val === false || val === true || ['recency', 'optimal', 'liked'].includes(val))
-				.map(([key, val]) => [key.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(), val])));
-		return new Profile(res);
+	async changePreferences(ageFilterMin, ageFilterMax, genderFilter, gender, distanceFilter) {
+		const res = await http.post('/v2/profile', { user: Object.fromEntries(
+			Object.entries({ ageFilterMin, ageFilterMax, genderFilter, gender, distanceFilter })
+				.filter(([, val]) => Number.isInteger(val) || val === false || val === true)
+				.map(([key, val]) => [key.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase(), val])) });
+		return new Profile(res.data.user);
 	}
 
 	async getProfile() {
@@ -71,13 +76,15 @@ class Tinder {
 
 	async getMatch(id) {
 		if (id && id.length > 0)
-			return new Match(await http.get(`/v2/matches/${id}`).data);
+			return new Match((await http.get(`/v2/matches/${id}`)).data);
 		return undefined;
 	}
 
 	async getMatchesByName(name) {
 		const matches = await this.getMatches();
-		return matches.filter(async (match) => (await match.getUser()).name === name);
+		const matchesWithName = await Promise.all(matches.map(async (match) => [(await match.getUser()).name, match]));
+		return matchesWithName.filter(([username]) => username === name)
+			.map(([, match]) => match);
 	}
 
 	async getUser(id) {
@@ -88,7 +95,7 @@ class Tinder {
 
 	async getMessage(id) {
 		if (id && id.length > 0)
-			return new Message((await http.get(`/message/${id}`)).results);
+			return new Message(await http.get(`/message/${id}`));
 		return undefined;
 	}
 

@@ -1,6 +1,5 @@
 const [User, Match] = [require('./User'), require('./Match')];
 const http = require('../http');
-
 class Message {
 
 	constructor(message) {
@@ -12,6 +11,7 @@ class Message {
 		this.senderId = message.from;
 		this.timestamp = message.timestamp ?? 'N/A';
 		this.created = message.created_date ? new Date(message.created_date) : 'N/A';
+		this.is_liked = !!message.is_liked;
 	}
 
 	async getAuthor() {
@@ -21,11 +21,15 @@ class Message {
 
 	async getMatch() {
 		const res = await http.get(`/v2/matches/${this.matchId}`);
-		return new Match(res.results);
+		return new Match(res.data);
 	}
 
 	async like() {
-		await http.post(`/message/${this.id}/like`);
+		return await http.post(`/message/${this.id}/like`);
+	}
+
+	async dislike() {
+		return await http.delete(`/message/${this.id}/like`);
 	}
 
 }
