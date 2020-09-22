@@ -62,7 +62,7 @@ class Tinder {
 		return new Profile(await http.get('/profile'));
 	}
 
-	async getRecommendations() {
+	async getRecommendedUsers() {
 		const res = await http.get('/user/recs');
 		return res.results.map((rec) => new User(rec));
 	}
