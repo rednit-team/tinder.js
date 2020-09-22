@@ -1,6 +1,4 @@
-const { User, InstagramInfo } = require(".");
-
-const [User, FacebookInfo, InstagramInfo, { TopArtist, Track }] = [require('./User'), require('./Facebook'), require('./Instagram'), require('./Spotify')];
+const [FacebookInfo, InstagramInfo, { TopArtist, Track }] = [require('./Facebook'), require('./Instagram'), require('./Spotify')];
 
 class Swipe {
 
@@ -9,9 +7,9 @@ class Swipe {
 		this.name = swipe.user.name;
 		this.birthdate = new Date(swipe.user.birth_date);
 		this.age = new Date().getFullYear() - this.birthdate.getFullYear();
-		this.bio = user.bio.trim();
-		this.distance = user.distance_mi;
-		this.photos = user.photos.map((photo) => photo.url);
+		this.bio = swipe.user.bio.trim();
+		this.distance = swipe.user.distance_mi;
+		this.photos = swipe.user.photos.map((photo) => photo.url);
 		this.gender = swipe.user.gender;
 		this.jobs = swipe.user.jobs;
 		this.schools = swipe.user.schools;
