@@ -1,5 +1,5 @@
 const Tinder = require('./index'),
-	{ Message, User, Match, Profile,  } = require('./models'),
+	{ Message, User, Match, Profile, Swipe } = require('./models'),
 	{ describe, it } = require('mocha'),
 	{ should } = require('chai');
 const tinder = new Tinder('97a9cc72-3e4f-4e9e-8d91-4b59620155f6');
@@ -48,11 +48,27 @@ describe('Tinder', () => {
 		matches[0].should.be.an.instanceof(Match);
 	});
 
-	it('getRecommendations', async () => {
-		const recs = await tinder.getRecommendations();
+	it('getRecommendedUsers', async () => {
+		const recs = await tinder.getRecommendedUsers();
 		should().exist(recs);
 		recs.should.be.a('array');
 		if (recs.length > 0) recs[0].should.be.an.instanceof(User);
+	});
+
+	it('getSwipes', async () => {
+		const swipes = await tinder.getSwipes();
+		should().exist(swipes);
+		swipes.should.be.a('array');
+		if (swipes.length > 0) swipes[0].should.be.an.instanceof(Swipe);
+	});
+
+	it('getUpdatesSince', async () => {
+		return;
+		const updates = await tinder.getUpdatesSince(firstOfMonth);
+		should().exist(updates);
+		updates.shoud.be.a('object');
+		updates.should.have.property('matches');
+		updates.should.have.property('last_activity_date');
 	});
 
 	it('getProfile', async () => {
@@ -68,7 +84,7 @@ describe('Tinder', () => {
 	});
 
 	it('changePreferences', async () => {
-		//return; // TODO: check connection, seems to kill all following requests
+		return; // TODO: check connection, seems to kill all following requests
 		const user = await tinder.changePreferences(18, 22, 1, 0, 50);
 		should().exist(user);
 		user.should.be.an.instanceof(Profile);
