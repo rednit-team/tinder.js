@@ -1,4 +1,4 @@
-const [FacebookInfo, InstagramInfo, { TopArtist, Track }] = [require('./Facebook'), require('./Instagram'), require('./Spotify')];
+const [FacebookInfo, InstagramInfo, { TopArtist, Track }] = [require('./Facebook'), require('./Instagram'), require('./Spotify')];
 const http = require('../http');
 
 class Swipe {
@@ -17,12 +17,12 @@ class Swipe {
 		this.showGender = swipe.user.show_gender_on_profile;
 		this.recentlyActive = swipe.user.recently_active;
 		this.facebook = new FacebookInfo(swipe.facebook);
-		if (swipe.spotify) this.spotify =  {
+		if (swipe.spotify) this.spotify = {
 			connected: swipe.spotify_connected,
 			spotifyTopArtists: swipe.spotify_top_artists?.map((artist) => new TopArtist(artist)),
-			spotifyThemeTrack: swipe.spotify_theme_track ? new Track(swipe.spotify_theme_track) : undefined,
-		}
-		if (swipe.instagram) this.instagram = new InstagramInfo(swipe.instagram)
+			spotifyThemeTrack: swipe.spotify_theme_track ? new Track(swipe.spotify_theme_track) : undefined
+		};
+		if (swipe.instagram) this.instagram = new InstagramInfo(swipe.instagram);
 		this.distance = swipe.distance_mi;
 		this.contentHash = swipe.content_hash;
 		this.isSuperlikeUpsell = swipe.is_superlike_upsell;

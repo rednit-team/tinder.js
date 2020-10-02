@@ -15,7 +15,7 @@ describe('Tinder', () => {
 	it('getMessage', async () => {
 		message = await tinder.getMessage('5f69b16610c5380100adf38c');
 		should().exist(message);
-		message.should.be.an.instanceof(Message)
+		message.should.be.an.instanceof(Message);
 		message.id.should.equal('5f69b16610c5380100adf38c');
 	});
 
@@ -63,12 +63,11 @@ describe('Tinder', () => {
 	});
 
 	it('getUpdatesSince', async () => {
-		return;
-		const updates = await tinder.getUpdatesSince(firstOfMonth);
+		/* const updates = await tinder.getUpdatesSince(firstOfMonth);
 		should().exist(updates);
 		updates.shoud.be.a('object');
 		updates.should.have.property('matches');
-		updates.should.have.property('last_activity_date');
+		updates.should.have.property('last_activity_date');*/
 	});
 
 	it('getProfile', async () => {
@@ -84,7 +83,7 @@ describe('Tinder', () => {
 	});
 
 	it('changePreferences', async () => {
-		return; // TODO: check connection, seems to kill all following requests
+		/* check connection, seems to kill all following requests
 		const user = await tinder.changePreferences(18, 22, 1, 0, 50);
 		should().exist(user);
 		user.should.be.an.instanceof(Profile);
@@ -92,15 +91,15 @@ describe('Tinder', () => {
 		user.ageMax.should.be.equal(22);
 		user.genderFilter.should.be.equal(1);
 		user.gender.should.be.equal(0);
-		user.distanceFilter.should.be.equal(50);
+		user.distanceFilter.should.be.equal(50);*/
 	});
 });
 
 describe('Message', () => {
 	it('getMatch', async () => {
-		const match = await message.getMatch();
-		should().exist(match);
-		match.should.be.an.instanceof(Match);
+		const msgMatch = await message.getMatch();
+		should().exist(msgMatch);
+		msgMatch.should.be.an.instanceof(Match);
 	});
 
 	it('getAuthor', async () => {
@@ -130,11 +129,10 @@ describe('Match', () => {
 	});
 
 	it('sendMessage', async () => {
-		// teste mit anderem match
-		return;
+		/* teste mit anderem match
 		const message = await match.sendMessage('hey');
 		should().exist(message);
-		message.should.be.an.instanceof(Message);
+		message.should.be.an.instanceof(Message);*/
 	});
 
 	it('getMessages', async () => {
@@ -145,8 +143,7 @@ describe('Match', () => {
 	});
 
 	it('unmatch', async () => {
-		// teste mit anderem match
-		return;
-		await match.unmatch();
+		/* teste mit anderem match
+		await match.unmatch();*/
 	});
 });

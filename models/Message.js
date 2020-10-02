@@ -11,7 +11,7 @@ class Message {
 		this.senderId = message.from;
 		this.timestamp = message.timestamp ?? 'N/A';
 		this.created = message.created_date ? new Date(message.created_date) : 'N/A';
-		this.is_liked = !!message.is_liked;
+		this.isLiked = !!message.is_liked;
 	}
 
 	async getAuthor() {
