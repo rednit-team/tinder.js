@@ -37,6 +37,9 @@ class Swipe {
 	 * @description Returns a new Swipe object
 	 */
 	constructor(swipe) {
+		this.type = swipe.type;
+		// rec_type = user, newbie_promotion, boost, sprinkle?, reactivated_2 (shit dude)
+		this.rec_type = swipe.rec_type;
 		this.userId = swipe.user._id;
 		this.name = swipe.user.name;
 		this.birthdate = new Date(swipe.user.birth_date);
