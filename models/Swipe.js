@@ -46,23 +46,29 @@ class Swipe {
 		this.age = new Date().getFullYear() - this.birthdate.getFullYear();
 		this.bio = swipe.user.bio.trim();
 		this.badges = swipe.user.badges;
-		this.distance = swipe.user.distance_mi;
+		this.distance = swipe.distance_mi;
 		this.photos = swipe.user.photos.map((photo) => photo.url);
 		this.gender = swipe.user.gender;
 		this.jobs = swipe.user.jobs;
 		this.schools = swipe.user.schools;
 		this.showGender = swipe.user.show_gender_on_profile;
 		this.facebook = new FacebookInfo(swipe.facebook);
-		if (swipe.spotify) this.spotify = {
-			connected: swipe.spotify.spotify_connected,
-			spotifyTopArtists: swipe.spotify.spotify_top_artists?.map((artist) => new TopArtist(artist)),
-			spotifyThemeTrack: swipe.spotify.spotify_theme_track ? new Track(swipe.spotify.spotify_theme_track) : undefined
-		};
-		if (swipe.instagram) this.instagram = new InstagramInfo(swipe.instagram);
-		if (swipe.is_traveling) this.traveling = swipe.is_traveling
+		this.isSuperlikeUpsell - swipe.is_superlike_upsell;
 		this.contentHash = swipe.content_hash;
 		this.teasers = swipe.teasers;
+		swipe.spotify.spotify_connected ?
+			this.spotify = {
+				connected: swipe.spotify.spotify_connected,
+				spotifyTopArtists: swipe.spotify.spotify_top_artists?.map((artist) => new TopArtist(artist)),
+				spotifyThemeTrack: swipe.spotify.spotify_theme_track ? new Track(swipe.spotify.spotify_theme_track) : undefined
+			}
+			: this.spotify = swipe.spotify.spotify_connected;
+		if (swipe.instagram) this.instagram = new InstagramInfo(swipe.instagram);
+		if (swipe.is_traveling) this.traveling = swipe.is_traveling;
+		if (swipe.user.sexual_orientations) this.sexualorientations = swipe.user.sexual_orientations;
 		if (swipe.experiment_info) this.experimental = swipe.experiment_info;
+		if (swipe.hide_age) this.hideage = swipe.hide_age;
+		if (swipe.hide_distance) this.hidedistance = swipe.hide_distance;
 	}
 
 	/**
@@ -99,7 +105,7 @@ class Swipe {
 	 * @async
 	 * @method dislike
 	 * @memberof Swipe
-	 * @description Dislike the swipe at hand
+	 * @description Dislike or pass the currrent swipe
 	 */
 	async dislike() {
 		await http.get(`/pass/${this.userId}`);

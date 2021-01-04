@@ -1,4 +1,5 @@
 const http = require('./http');
+const fs = require('fs');
 const { User, Message, Match, Profile, Swipe } = require('./models');
 
 class Tinder {
@@ -15,6 +16,7 @@ class Tinder {
 	async getSwipes() {
 		const swipes = await http.get('/v2/recs/core');
 		console.log(swipes.data.results)
+		fs.writeFileSync('./outraw.txt', JSON.stringify(swipes.data.results))
 		return swipes.data.results.map(swipe => new Swipe(swipe));
 	}
 
