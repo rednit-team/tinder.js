@@ -1,9 +1,9 @@
 export default class FacebookInfo {
   connectionCount: number
 
-  commonConnections: any
+  commonConnections: any[]
 
-  commonInterests: any
+  commonInterests: any[]
 
   constructor(facebook: { connection_count: number; common_connections: any; common_interests: any }) {
     this.connectionCount = facebook.connection_count

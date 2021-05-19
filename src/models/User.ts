@@ -1,85 +1,89 @@
-import http from "../http";
-import { TopArtist, Track } from "./Spotify";
-import InstagramInfo from "./Instagram";
+import http from '../http'
+import { TopArtist, Track } from './Spotify'
+
+type RawSpotifyTrack = {
+  id: string
+  name: string
+  selected: boolean
+  top_track: unknown
+}
+
+type IncomingUser = {
+  common_friends: any[]
+  common_friend_count: number
+  spotify_top_artists?: RawSpotifyTrack[]
+  spotify_theme_track?: {
+    id: string
+    name: string
+    album: {
+      id: string
+      name: string
+      images: any[]
+    }
+    artists: any[]
+    preview_url: string
+    uri: string
+  }
+  distance_mi: number
+  connection_count: number
+  common_connections: any[]
+  bio: string
+  birth_date: Date
+  name: string
+  is_travelling: boolean
+  jobs: any[]
+  schools: any[]
+  teasers: any[]
+  gender: number
+  birth_date_info: string
+  ping_time: Date
+  badges: any[]
+  photos: any[]
+  common_likes: any[]
+  common_like_count: number
+  city?: { name?: string }
+  common_interests: any[]
+  s_number: number
+  _id: string
+  is_tinder_u: boolean
+}
 
 export default class User {
-  id: any;
+  id: string
 
-  name: any;
+  name: string
 
-  birthdate: Date;
+  birthdate: Date
 
-  age: number;
+  age: number
 
-  bio: any;
+  bio: string
 
-  distance: any;
+  distance: number
 
-  photos: any;
+  photos: string[]
 
-  spotify:
-    | { connected: any; spotifyTopArtists: any; spotifyThemeTrack: any }
-    | undefined;
+  instagram: any
 
-  instagram: any;
+  themeTrack: Track | undefined
 
-  // TODO: implement user into swipe object, so user properties are pulled from
-  // this model when constructing a new Swipe Object
-
-  /**
-   * @typedef {Object} user
-   *
-   * @memberof User
-   *
-   * @property {*} id - User ID
-   * @property {String} name - User name
-   * @property {Date} birthdate
-   * @property {Number} age
-   * @property {String} bio
-   * @property {Number} distance
-   * @property {String[]} photos
-   * @property {Object} spotify
-   * @property {Object} instagram
-   *
-   */
+  topArtists: TopArtist[] | undefined
 
   /**
    * @constructor
    * @param {user} user
    * @description Returns a new User Object
    */
-  constructor(user: {
-    _id: any;
-    name: string;
-    birth_date: string | number | Date;
-    bio: string;
-    distance_mi: any;
-    photos: any[];
-    spotify: {
-      spotify_connected: any;
-      spotify_top_artists: any[];
-      spotify_theme_track: any;
-    };
-    instagram: any;
-  }) {
-    this.id = user._id;
-    this.name = user.name.trim();
-    this.birthdate = new Date(user.birth_date);
-    this.age = new Date().getFullYear() - this.birthdate.getFullYear();
-    this.bio = user.bio.trim();
-    this.distance = user.distance_mi;
-    this.photos = user.photos.map((photo) => photo.url);
-    if (user.spotify)
-      this.spotify = {
-        connected: user.spotify.spotify_connected,
-        spotifyTopArtists: user.spotify.spotify_top_artists?.map(
-          (artist) => new TopArtist(artist)
-        ),
-        spotifyThemeTrack: user.spotify.spotify_theme_track
-          ? new Track(user.spotify.spotify_theme_track)
-          : undefined,
-      };
-    if (user.instagram) this.instagram = new InstagramInfo(user.instagram);
+  constructor(user: IncomingUser) {
+    this.id = user._id
+    this.name = user.name.trim()
+    this.birthdate = new Date(user.birth_date)
+    this.age = new Date().getFullYear() - this.birthdate.getFullYear()
+    this.bio = user.bio.trim()
+    this.distance = user.distance_mi
+    this.photos = user.photos.map((photo: any) => photo.url)
+    if (user.spotify_theme_track) this.themeTrack = new Track(user.spotify_theme_track)
+    if (user.spotify_top_artists) this.topArtists = user.spotify_top_artists?.map((artist: any) => new TopArtist(artist))
   }
 
   /**
@@ -89,7 +93,7 @@ export default class User {
    * @returns {Number} - distance(in KM)
    */
   get distanceMi() {
-    return this.distance;
+    return this.distance
   }
 
   /**
@@ -99,7 +103,7 @@ export default class User {
    * @returns {Number} - distance
    */
   get distanceKm() {
-    return this.distance * 1.609344;
+    return this.distance * 1.609344
   }
 
   /**
@@ -108,7 +112,7 @@ export default class User {
    * @description Like the user at hand
    */
   async like() {
-    await http.get(`/like/${this.id}`);
+    await http.get(`/like/${this.id}`)
   }
 
   /**
@@ -117,7 +121,7 @@ export default class User {
    * @description Dislike the User at hand
    */
   async dislike() {
-    await http.get(`/pass/${this.id}`);
+    await http.get(`/pass/${this.id}`)
   }
 
   /**
@@ -126,6 +130,6 @@ export default class User {
    * @description Superlike the user at hand
    */
   async superlike() {
-    await http.get(`/like/${this.id}/super`);
+    await http.get(`/like/${this.id}/super`)
   }
 }

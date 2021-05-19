@@ -9,24 +9,7 @@ export class TopArtist {
 
   topTrack: Track
 
-  constructor(artist: {
-    id: any
-    name: any
-    selected: any
-    top_track: {
-      id: any
-      name: any
-      album: {
-        id: any
-        name: any
-        images: {
-          map: (arg0: (image: any) => any[]) => Iterable<readonly [PropertyKey, any]>
-        }
-      }
-      preview_url: any
-      uri: any
-    }
-  }) {
+  constructor(artist: any) {
     this.artistId = artist.id
     this.name = artist.name
     this.selected = artist.selected
@@ -45,19 +28,7 @@ export class Track {
 
   uri: any
 
-  constructor(track: {
-    id: any
-    name: any
-    album: {
-      id: any
-      name: any
-      images: {
-        map: (arg0: (image: any) => any[]) => Iterable<readonly [PropertyKey, any]>
-      }
-    }
-    preview_url: any
-    uri: any
-  }) {
+  constructor(track: any) {
     this.trackId = track.id
     this.name = track.name
     this.album = new Album(track.album)

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha dist/index.spec.js --exit --timeout 5000",
     "lint": "eslint 'src/**/*.ts'",
-    "lint:fix": "eslint 'src/**/*.ts' --fix"
+    "lint:fix": "eslint 'src/**/*.ts' --fix",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "@aero/eslint-config": "1.0.5",
     "@types/centra": "^2.2.0",
     "@types/chai": "^4.2.18",
+    "@types/lru-cache": "^5.1.0",
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.3.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
@@ -42,7 +44,8 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@aero/centra": "^1.0.6"
+    "@aero/centra": "^1.0.6",
+    "lru-cache": "^6.0.0"
   },
   "engines": {
     "node": ">=12"

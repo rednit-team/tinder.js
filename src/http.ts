@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import * as centra from '@aero/centra'
+import centra from '@aero/centra'
 
 const baseUrl = 'https://api.gotinder.com'
 
