@@ -2,7 +2,7 @@
   "name": "tinderjs",
   "version": "0.0.1",
   "description": "Javascript Wrapper for the Tinder API",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "mocha index.spec.js --exit --timeout 5000",
     "lint": "eslint '**/*.js'",
