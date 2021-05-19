@@ -3,87 +3,57 @@
 import Message from './Message'
 import User from './User'
 import http from '../http'
+import { Person } from './Person'
+import { CacheManager } from '../util'
 
 export default class Match {
-  id: any
+  seen?: { match_seen: boolean; last_msg_seen: string }
 
-  closed: any
+  id: string
 
-  commonFriendCount: any
+  closed: boolean
 
-  commonLikeCount: any
+  commonFriendCount: number
+
+  commonLikeCount: number
 
   created: Date
 
-  dead: any
+  dead: boolean
 
   lastActivity: Date
 
-  pending: any
+  pending: boolean
 
-  isSuperlike: any
+  isSuperlike: boolean
 
-  isBoostMatch: any
+  isBoostMatch: boolean
 
-  isSuperBoostMatch: any
+  isSuperBoostMatch: boolean
 
-  isExperiencesMatch: any
+  isExperiencesMatch: boolean
 
-  isFastMatch: any
+  isFastMatch: boolean
 
-  isOpener: any
+  isOpener: boolean
 
-  userId: any
+  person: Person
 
-  /**
-   * @typedef match
-   *
-   * @memberof Match
-   *
-   * @property {*} ID
-   * @property {Boolean} closed
-   * @property {Number} commonFriendCount
-   * @property {Number} commonLikeCount
-   * @property {Date} created
-   * @property {Boolean} dead
-   * @property {Date} lastActivity - probably deprecated
-   * @property {*} pending
-   * @property {Boolean} isSuperlike
-   * @property {Boolean} isBoostMatch
-   * @property {Boolean} isSuperBoostMatch
-   * @property {Boolean} isExperiencesMatch
-   * @property {Boolean} isFastMatch
-   * @property {Boolean} isOpener
-   * @property {Boolean} userId - User ID of the other person/user
- 
+  messageCount: number
 
-  /**
-   * @constructor
-   * @param {Object} match - The raw match object we get from tinder
-   */
-  constructor(match: {
-    id: any
-    closed: any
-    common_friend_count: any
-    common_like_count: any
-    created_date: string | number | Date
-    dead: any
-    last_activity_date: string | number | Date
-    pending: any
-    is_super_like: any
-    is_boost_match: any
-    is_super_boost_match: any
-    is_experiences_match: any
-    is_fast_match: any
-    is_opener: any
-    person: { _id: any }
-  }) {
+  private cache: CacheManager
+
+  constructor(match: any, cache: CacheManager) {
+    this.cache = cache
+
+    this.seen = match.seen
     this.id = match.id
     this.closed = match.closed
     this.commonFriendCount = match.common_friend_count
     this.commonLikeCount = match.common_like_count
     this.created = new Date(match.created_date)
     this.dead = match.dead
+    this.person = new Person(match.person)
     this.lastActivity = new Date(match.last_activity_date)
     this.pending = match.pending
     this.isSuperlike = match.is_super_like
@@ -92,56 +62,50 @@ export default class Match {
     this.isExperiencesMatch = match.is_experiences_match
     this.isFastMatch = match.is_fast_match
     this.isOpener = match.is_opener
-    this.userId = match.person._id
+    this.messageCount = match.message_count
   }
 
   /**
-   * @async
-   * @method getUser
-   * @memberof Match
-   * @returns Userobject
+   * @returns the tinder userobject
    */
-  async getUser() {
-    const res = await http.get(`/user/${this.userId}`)
+  async getUser(): Promise<User> {
+    const res = await http.get(`/user/${this.person.id}`)
     return new User(res.results)
   }
 
   /**
-   * @async
-   * @method sendMessage
-   * @memberof Match
-   * @param {String} content
+   * @param content of the message to send
    */
   async sendMessage(content: string) {
     const res = await http.post(`/user/matches/${this.id}`, {
       message: content,
     })
-    return new Message(res.results)
+
+    return new Message(res.results, this.cache)
   }
 
   /**
-   * @async
-   * @method getMessages
-   * @memberof Match
    * @param {Number} [count=60] - Number of messages you want to request from the tinder API
    * @param {*} pageToken - Page token
    */
   async getMessages(count: number = 60, pageToken: any) {
+    const cacheAndForget = (message: any) => {
+      if (!this.cache.has(message.id)) this.cache.set(message.id, message)
+      return new Message(message, this.cache)
+    }
     let res = await http.get(`/v2/matches/${this.id}/messages?count=${count}${pageToken ? `&page_token=${pageToken}` : ''}`)
-    const messages = res.data.messages.map((message: any) => new Message(message))
+    const messages = res.data.messages.map((message: any) => cacheAndForget(message))
     if (count > 60) {
       while (messages.count < count) {
         res = await http.get(`/v2/matches/${this.id}/messages?count=${count}&page_token=${res.page_token}`)
-        messages.push(res.data.messages.map((message: any) => new Message(message)))
+        messages.push(res.data.messages.map((message: any) => cacheAndForget(message)))
       }
     }
     return messages.splice(0, count)
   }
 
   /**
-   * @async
-   * @method unmatch
-   * @memberof Match
+   * use this method to unmatch the current match
    */
   async unmatch() {
     await http.delete(`/user/matches/${this.id}`)
