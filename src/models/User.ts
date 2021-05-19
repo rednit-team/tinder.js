@@ -4,15 +4,23 @@ import InstagramInfo from "./Instagram";
 
 export default class User {
   id: any;
+
   name: any;
+
   birthdate: Date;
+
   age: number;
+
   bio: any;
+
   distance: any;
+
   photos: any;
+
   spotify:
     | { connected: any; spotifyTopArtists: any; spotifyThemeTrack: any }
     | undefined;
+
   instagram: any;
 
   // TODO: implement user into swipe object, so user properties are pulled from

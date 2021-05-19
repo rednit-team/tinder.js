@@ -4,9 +4,9 @@
   "description": "Javascript Wrapper for the Tinder API",
   "main": "dist/index.js",
   "scripts": {
-    "test": "mocha index.spec.js --exit --timeout 5000",
-    "lint": "eslint '**/*.js'",
-    "lint:fix": "eslint '**/*.js' --fix"
+    "test": "mocha dist/index.spec.js --exit --timeout 5000",
+    "lint": "eslint 'src/**/*.ts'",
+    "lint:fix": "eslint 'src/**/*.ts' --fix"
   },
   "repository": {
     "type": "git",
@@ -25,12 +25,20 @@
   "homepage": "https://github.com/puf17640/tinder.js#readme",
   "devDependencies": {
     "@aero/eslint-config": "1.0.5",
+    "@types/centra": "^2.2.0",
     "@types/chai": "^4.2.18",
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
     "chai": "4.3.4",
     "eslint": "7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.2",
+    "eslint-plugin-prettier": "^3.4.0",
     "mocha": "8.4.0",
+    "prettier": "^2.3.0",
     "typescript": "^4.2.4"
   },
   "dependencies": {

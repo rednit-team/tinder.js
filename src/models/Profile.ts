@@ -1,20 +1,36 @@
 export default class Profile {
   id: any;
+
   ageMax: any;
+
   ageMin: any;
+
   bio: any;
+
   birthdate: Date;
+
   created: Date;
+
   discoverable: any;
+
   distanceFilter: any;
+
   email: any;
+
   gender: any;
+
   genderFilter: any;
+
   name: any;
+
   photos: any;
+
   showGender: any;
+
   canCreateSquad: any;
+
   position: any;
+
   constructor(profile: {
     _id: any;
     age_filter_max: any;

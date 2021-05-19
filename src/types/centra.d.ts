@@ -1,1 +1,1 @@
-declare module "@aero/centra";
+declare module '@aero/centra'

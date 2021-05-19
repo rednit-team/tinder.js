@@ -1,1 +1,1 @@
-declare type AuthToken = string;
+declare type AuthToken = string

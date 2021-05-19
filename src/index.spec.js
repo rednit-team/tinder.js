@@ -1,7 +1,7 @@
-import Tinder from "./index";
-import { Message, User, Match, Profile, Swipe } from "./models";
-import { describe, it } from "mocha";
-import { should } from "chai";
+const Tinder = require("./index"),
+  { Message, User, Match, Profile, Swipe } = require("./models"),
+  { describe, it } = require("mocha"),
+  { should } = require("chai");
 const tinder = new Tinder("97a9cc72-3e4f-4e9e-8d91-4b59620155f6");
 let message, match;
 
