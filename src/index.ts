@@ -13,25 +13,21 @@ export class Tinder {
     matches: boolean
   }
 
-  constructor(
-    authToken: AuthToken,
-    {
-      maxCacheItems = 500,
-      maxAgeCacheItems = 1000 * 60 * 60,
-      cacheUsers = true,
-      cacheMessages = true,
-      cacheMatches = true,
-    }: { maxCacheItems: number; maxAgeCacheItems: number; cacheUsers: boolean; cacheMessages: boolean; cacheMatches: boolean },
-  ) {
+  constructor(authToken: AuthToken, options?: { maxCacheItems?: number; maxAgeCacheItems?: number; cacheUsers?: boolean; cacheMessages?: boolean; cacheMatches?: boolean }) {
     http.setToken(authToken)
-    this.cache = new CacheManager({ max: maxCacheItems, maxAge: maxAgeCacheItems })
+    this.cache = new CacheManager({ max: options?.maxCacheItems ?? 500, maxAge: options?.maxAgeCacheItems ?? 1000 * 60 * 60 })
     this.cacheOptions = {
-      users: cacheUsers,
-      messages: cacheMessages,
-      matches: cacheMatches,
+      users: options?.cacheUsers || true,
+      messages: options?.cacheMessages || true,
+      matches: options?.cacheMatches || true,
     }
   }
 
+  /**
+   * Use this method to tell the tinder api you are back and want the latest upates
+   * @param date The date from where on you want to get updates
+   * @returns all updates since the specified date
+   */
   async getUpdatesSince(date: Date) {
     // eslint-disable-next-line camelcase
     return http.post('/updates', {
@@ -39,6 +35,9 @@ export class Tinder {
     })
   }
 
+  /**
+   * @returns your swipes from the tinder api
+   */
   async getSwipes(): Promise<Swipe[]> {
     const swipes = await http.get('/v2/recs/core')
 
@@ -53,14 +52,27 @@ export class Tinder {
     return meta.data
   }
 
+  /**
+   * This method is used to report users by id
+   * @param id - id of the user to report
+   * @param cause - reason why you want to report the user
+   * @param explanation - explanation of the report
+   */
   async reportUser(id: string | any[], cause: any, explanation: any) {
     if (id && id.length > 0) await http.post(`/report/${id}`, { cause, explanation })
   }
 
+  /**
+   * This method resets your username
+   */
   async resetUsername() {
     return this.changeUsername()
   }
 
+  /**
+   * Change your username
+   * @param username - the new username you want to use from now on
+   */
   async changeUsername(username?: string): Promise<void> {
     if (username && username.length > 0) await http.put('/profile/username', { username })
     else await http.delete('/profile/username')
@@ -78,6 +90,9 @@ export class Tinder {
     await http.post('/passport/user/reset')
   }
 
+  /**
+   * @returns the total amount of likes you received
+   */
   async getLikeCount(): Promise<number> {
     const res = await http.get('/v2/fast-match/count')
     return res.data.count
@@ -109,24 +124,40 @@ export class Tinder {
     return res.results.map((rec: any) => new User(rec))
   }
 
+  /**
+   * This method is used to obtain all your matches from the tinder api
+   * @param count How many matches you want to get returned
+   * @param pageToken - pagetoken
+   * @returns an array with all your matches as match objects
+   */
   async getMatches(count: number = 60, pageToken?: any): Promise<Match[]> {
+    const fireAndForget = (match: any) => {
+      console.log(match)
+      if (this.cacheOptions.matches !== false) this.cache.set(match.id, match)
+      return new Match(match)
+    }
     let res = await http.get(`/v2/matches?count=${count}&is_tinder_u=false${pageToken ? `&page_token=${pageToken}` : ''}`)
-    const matches = res.data.matches.map((match: any) => new Match(match))
+    const matches = res.data.matches.map((match: any) => fireAndForget(match))
     if (matches.count < count && res.page_token) {
       while (matches.count < count) {
         // eslint-disable-next-line no-await-in-loop
         res = await http.get(`/v2/matches?count=${count}&page_token=${res.page_token}`)
-        matches.push(res.data.matches.map((match: any) => new Match(match)))
+        matches.push(res.data.matches.map((match: any) => fireAndForget(match)))
       }
     }
     return matches.splice(0, count)
   }
 
+  /**
+   * This method is used to fetch a specific metch from the tinder api by id
+   * @param id Id of the match you want to fetch
+   * @returns a tinder match object with the given id
+   */
   async getMatch(id: string): Promise<Match | undefined> {
     if (id && id.length > 0) {
-      if (this.cache.has(id)) return new Match(JSON.parse(this.cache.get(id)))
+      if (this.cache.has(id)) return new Match(this.cache.get(id))
       const rawMatch = (await http.get(`/v2/matches/${id}`)).data
-      if (this.cacheOptions.matches !== false) this.cache.set(id, JSON.stringify(rawMatch))
+      if (this.cacheOptions.matches !== false) this.cache.set(id, rawMatch)
       return new Match(rawMatch)
     }
     return undefined
@@ -144,23 +175,33 @@ export class Tinder {
     )
   }
 
+  /**
+   * This method is used to fetch a specific user from the tinder api
+   * @param id Id of the user you want to fetch
+   * @returns a tinder user object
+   */
   async getUser(id: string): Promise<User | undefined> {
     const rawUser = (await http.get(`/user/${id}`)).results
     console.log(rawUser)
     rawUser.spotify_top_artists.forEach((artist: any) => console.log(artist))
     if (id && id.length > 0) {
-      if (this.cache.has(id)) return new User(JSON.parse(this.cache.get(id)))
-      if (this.cacheOptions.users !== false) this.cache.set(id, JSON.stringify(rawUser))
+      if (this.cache.has(id)) return new User(this.cache.get(id))
+      if (this.cacheOptions.users !== false) this.cache.set(id, rawUser)
       return new User(rawUser)
     }
     return undefined
   }
 
+  /**
+   * This method is used to fetch a specific message from the api
+   * @param id Id of the message you want to fetch
+   * @returns a tinder message object
+   */
   async getMessage(id: string): Promise<Message | undefined> {
     if (id && id.length > 0) {
-      if (this.cache.has(id)) return new Message(JSON.parse(this.cache.get(id)))
+      if (this.cache.has(id)) return new Message(this.cache.get(id))
       const rawMsg = await http.get(`/message/${id}`)
-      if (this.cacheOptions.messages !== false) this.cache.set(id, JSON.stringify(rawMsg))
+      if (this.cacheOptions.messages !== false) this.cache.set(id, rawMsg)
       return new Message(rawMsg)
     }
     return undefined

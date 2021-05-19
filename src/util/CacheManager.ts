@@ -8,11 +8,11 @@ export default class CacheManager {
   }
 
   set(key: string, value: any, maxAge?: number) {
-    this._LRU.set(key, value, maxAge)
+    this._LRU.set(key, JSON.stringify(value), maxAge)
   }
 
   get(key: string) {
-    return this._LRU.get(key)
+    return JSON.parse(this._LRU.get(key))
   }
 
   reset() {
@@ -21,6 +21,10 @@ export default class CacheManager {
 
   has(key: string): boolean {
     return this._LRU.has(key)
+  }
+
+  del(key: string) {
+    this._LRU.del(key)
   }
 
   getLRU() {
