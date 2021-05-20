@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable class-methods-use-this */
 import http from './http'
-import { CacheManager } from './util'
+import { CacheManager } from './cache'
 import { User, Message, Match, Profile, Swipe } from './models'
-import UserCache from "./util/UserCache";
+import UserCache from "./cache/UserCache";
 
 export class Tinder {
   private readonly cache: CacheManager

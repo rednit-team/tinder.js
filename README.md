@@ -71,3 +71,28 @@ cache.del(key)
 // reset and empty the entire cache
 cache.reset()
 ```
+
+# Logging
+
+There are really not that much console.log statements in this lib but still we wanted to offer the option to pass in a custom logger, because we know the pain of libraries writing to console when you wanted to use a custom logger.
+
+Pass your custom logger like so:
+```js
+const tinder = new Tinder("X-AUTH-TOKEN", { 
+    logger: myCustomLogger,
+    // this is optional
+    debug: false
+})
+```
+Your logger has to be constructable and will be passed a boolean from us to determine if you want debug output or not. The following methods are required:
+```js
+myCustomLogger.log()
+
+myCustomLogger.info()
+
+myCustomLogger.warn()
+
+myCustomLogger.error()
+
+myCustomLogger.debug()
+```

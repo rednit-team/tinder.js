@@ -2,7 +2,7 @@
 import User from './User'
 import Match from './Match'
 import http from '../http'
-import { CacheManager } from '../util'
+import { CacheManager } from '../cache'
 
 export default class Message {
   id: string

@@ -4,7 +4,7 @@ import Message from './Message'
 import User from './User'
 import http from '../http'
 import Person from './Person'
-import { CacheManager } from '../util'
+import { CacheManager } from '../cache'
 
 export default class Match {
   seen?: { match_seen: boolean; last_msg_seen: string }
