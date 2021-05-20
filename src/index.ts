@@ -7,20 +7,9 @@ import { User, Message, Match, Profile, Swipe } from './models'
 export class Tinder {
   private cache: CacheManager
 
-  cacheOptions: {
-    users: boolean
-    messages: boolean
-    matches: boolean
-  }
-
-  constructor(authToken: AuthToken, options?: { maxCacheItems?: number; maxAgeCacheItems?: number; cacheUsers?: boolean; cacheMessages?: boolean; cacheMatches?: boolean }) {
+  constructor(authToken: AuthToken) {
     http.setToken(authToken)
-    this.cache = new CacheManager({ max: options?.maxCacheItems ?? 500, maxAge: options?.maxAgeCacheItems ?? 1000 * 60 * 60 })
-    this.cacheOptions = {
-      users: options?.cacheUsers || true,
-      messages: options?.cacheMessages || true,
-      matches: options?.cacheMatches || true,
-    }
+    this.cache = new CacheManager({ max: 1000, maxAge: 1000 * 60 * 60 })
   }
 
   /**
@@ -121,7 +110,10 @@ export class Tinder {
 
   async getRecommendedUsers(): Promise<User[]> {
     const res = await http.get('/user/recs')
-    return res.results.map((rec: any) => new User(rec))
+    return res.results.map((rec: any) => {
+      this.cache.set(rec._id, rec)
+      return new User(rec)
+    })
   }
 
   /**
@@ -131,18 +123,21 @@ export class Tinder {
    * @returns an array with all your matches as match objects
    */
   async getMatches(count: number = 60, pageToken?: any): Promise<Match[]> {
-    const fireAndForget = (match: any) => {
-      console.log(match)
-      if (this.cacheOptions.matches !== false) this.cache.set(match.id, match)
-      return new Match(match)
-    }
     let res = await http.get(`/v2/matches?count=${count}&is_tinder_u=false${pageToken ? `&page_token=${pageToken}` : ''}`)
-    const matches = res.data.matches.map((match: any) => fireAndForget(match))
+    const matches = res.data.matches.map((match: any) => {
+      this.cache.set(match.id, match)
+      return new Match(match, this.cache)
+    })
     if (matches.count < count && res.page_token) {
       while (matches.count < count) {
         // eslint-disable-next-line no-await-in-loop
         res = await http.get(`/v2/matches?count=${count}&page_token=${res.page_token}`)
-        matches.push(res.data.matches.map((match: any) => fireAndForget(match)))
+        matches.push(
+          res.data.matches.map((match: any) => {
+            this.cache.set(match.id, match)
+            return new Match(match, this.cache)
+          }),
+        )
       }
     }
     return matches.splice(0, count)
@@ -155,10 +150,10 @@ export class Tinder {
    */
   async getMatch(id: string): Promise<Match | undefined> {
     if (id && id.length > 0) {
-      if (this.cache.has(id)) return new Match(this.cache.get(id))
+      if (this.cache.has(id)) return new Match(this.cache.get(id), this.cache)
       const rawMatch = (await http.get(`/v2/matches/${id}`)).data
-      if (this.cacheOptions.matches !== false) this.cache.set(id, rawMatch)
-      return new Match(rawMatch)
+      this.cache.set(id, rawMatch)
+      return new Match(rawMatch, this.cache)
     }
     return undefined
   }
@@ -186,7 +181,7 @@ export class Tinder {
     rawUser.spotify_top_artists.forEach((artist: any) => console.log(artist))
     if (id && id.length > 0) {
       if (this.cache.has(id)) return new User(this.cache.get(id))
-      if (this.cacheOptions.users !== false) this.cache.set(id, rawUser)
+      this.cache.set(id, rawUser)
       return new User(rawUser)
     }
     return undefined
@@ -199,10 +194,10 @@ export class Tinder {
    */
   async getMessage(id: string): Promise<Message | undefined> {
     if (id && id.length > 0) {
-      if (this.cache.has(id)) return new Message(this.cache.get(id))
+      if (this.cache.has(id)) return new Message(this.cache.get(id), this.cache)
       const rawMsg = await http.get(`/message/${id}`)
-      if (this.cacheOptions.messages !== false) this.cache.set(id, rawMsg)
-      return new Message(rawMsg)
+      this.cache.set(id, rawMsg)
+      return new Message(rawMsg, this.cache)
     }
     return undefined
   }
