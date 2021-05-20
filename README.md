@@ -28,3 +28,37 @@ const fetchRecs = (async () => {
 	
 })();
 ~~~
+
+# Caching
+
+If you don't want to risk getting ratelimited or even banned, it is always a good idea to cache API responses.
+This library already caches all the relevant responses by default, but if you want to have more control over the caching behaviour, you can pass your own CacheManager. It has to be a constructable class that gets passed an object from us with the keys `max` and `maxAge`.
+
+```js
+// instantiate the client with custom cache/cache manager, if omitted, fallback cache will be used
+const tinder = new Tinder("X-AUTH-TOKEN", MyCustomCache)
+```
+
+```js
+const options = {
+    max: 500,               // max amount of items in cache
+    maxAge: 100 * 60 * 60   // max livetime in milliseconds
+}
+```
+Make sure your cache manager has the following methods available:
+```js
+// key will always be a string
+cache.get(key)
+
+// value will be a JSON.strigified object
+cache.set(key, value)
+
+// exptected to return a boolean
+cache.has(key)
+
+// delete the given key and its value from cache
+cache.del(key)
+
+// reset and empty the entire cache
+cache.reset()
+```

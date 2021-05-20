@@ -1,33 +1,42 @@
 import LRU from 'lru-cache'
+import UserCache from "./UserCache";
 
 export default class CacheManager {
-  private _LRU: LRU<string, any>
+  private readonly cache: UserCache | LRU<any, any>
 
-  constructor({ max = 500, maxAge = 100 * 60 * 60 }: { max: number; maxAge?: number }) {
-    this._LRU = new LRU({ max, maxAge })
+  private readonly maxAge: number | undefined;
+
+  private readonly maxItems: number;
+
+  constructor({ max = 500, maxAge = 100 * 60 * 60 }: { max: number; maxAge?: number }, UserCacheManager?: typeof UserCache) {
+    this.maxItems = max
+
+    this.maxAge = maxAge
+
+    this.cache = UserCacheManager ? new UserCacheManager({ max: this.maxItems, maxAge: this.maxAge }) : new LRU({ max, maxAge })
   }
 
-  set(key: string, value: any, maxAge?: number) {
-    this._LRU.set(key, JSON.stringify(value), maxAge)
+  set(key: string, value: any) {
+    this.cache.set(key, JSON.stringify(value))
   }
 
   get(key: string) {
-    return JSON.parse(this._LRU.get(key))
+    return JSON.parse(this.cache.get(key))
   }
 
   reset() {
-    this._LRU.reset()
+    this.cache.reset()
   }
 
   has(key: string): boolean {
-    return this._LRU.has(key)
+    return this.cache.has(key)
   }
 
   del(key: string) {
-    this._LRU.del(key)
+    this.cache.del(key)
   }
 
   getLRU() {
-    return this._LRU
+    return this.cache
   }
 }

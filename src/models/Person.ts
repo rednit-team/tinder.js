@@ -1,4 +1,4 @@
-export class Person {
+export default class Person {
   id: string
 
   bio: string

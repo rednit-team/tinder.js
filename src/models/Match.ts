@@ -3,7 +3,7 @@
 import Message from './Message'
 import User from './User'
 import http from '../http'
-import { Person } from './Person'
+import Person from './Person'
 import { CacheManager } from '../util'
 
 export default class Match {

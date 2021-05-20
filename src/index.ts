@@ -3,13 +3,14 @@
 import http from './http'
 import { CacheManager } from './util'
 import { User, Message, Match, Profile, Swipe } from './models'
+import UserCache from "./util/UserCache";
 
 export class Tinder {
-  private cache: CacheManager
+  private readonly cache: CacheManager
 
-  constructor(authToken: AuthToken) {
+  constructor(authToken: AuthToken, userCache?: typeof UserCache) {
     http.setToken(authToken)
-    this.cache = new CacheManager({ max: 1000, maxAge: 1000 * 60 * 60 })
+    this.cache = new CacheManager({ max: 1000, maxAge: 1000 * 60 * 60 }, userCache)
   }
 
   /**
