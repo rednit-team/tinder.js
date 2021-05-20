@@ -8,9 +8,9 @@ import UserCache from "./util/UserCache";
 export class Tinder {
   private readonly cache: CacheManager
 
-  constructor(authToken: AuthToken, userCache?: typeof UserCache) {
+  constructor(authToken: AuthToken, options?: { maxItems?: number, maxAge?: number, cache?: typeof UserCache }) {
     http.setToken(authToken)
-    this.cache = new CacheManager({ max: 1000, maxAge: 1000 * 60 * 60 }, userCache)
+    this.cache = new CacheManager(options)
   }
 
   /**

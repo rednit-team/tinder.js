@@ -4,16 +4,17 @@ import UserCache from "./UserCache";
 export default class CacheManager {
   private readonly cache: UserCache | LRU<any, any>
 
-  private readonly maxAge: number | undefined;
+  private readonly maxAge: number;
 
   private readonly maxItems: number;
 
-  constructor({ max = 500, maxAge = 100 * 60 * 60 }: { max: number; maxAge?: number }, UserCacheManager?: typeof UserCache) {
-    this.maxItems = max
+  constructor(options?: { maxItems?: number, maxAge?: number, cache?: typeof UserCache}) {
+    this.maxItems = options?.maxItems || 500
 
-    this.maxAge = maxAge
+    this.maxAge = options?.maxAge || 1000 * 60 * 60
 
-    this.cache = UserCacheManager ? new UserCacheManager({ max: this.maxItems, maxAge: this.maxAge }) : new LRU({ max, maxAge })
+    // eslint-disable-next-line new-cap
+    this.cache = options?.cache ? new options.cache({ maxItems: this.maxItems, maxAge: this.maxAge }) : new LRU({ max: this.maxItems, maxAge: this.maxAge })
   }
 
   set(key: string, value: any) {

@@ -3,8 +3,8 @@ export default class UserCache {
 
     private maxAge: number;
 
-    constructor({ max, maxAge }: { max: number, maxAge: number }) {
-        this.maxItems = max;
+    constructor({ maxItems, maxAge }: { maxItems: number, maxAge: number }) {
+        this.maxItems = maxItems;
         this.maxAge = maxAge
     }
 

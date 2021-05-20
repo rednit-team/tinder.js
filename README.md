@@ -14,6 +14,15 @@ const Tinder = require('tinder.js')
 // Your x-auth-token can be found with devtools
 // in the network tab. It's sent with every request
 const tinder = new Tinder("X-AUTH-TOKEN")
+
+// To adjust the caching behaviour, pass in an options object like so:
+// for even more control, scroll down to the "Caching" section
+const tinder = new Tinder("X-AUTH-TOKEN", { 
+    // amount of items you want to keep in cache
+    maxItems: 500, 
+    // time an item will be kept in cache (in ms)
+    maxAge: 10000
+})
 ~~~
 Now that we have our tinder client ready, lets get some recommendations(swipes) and start swiping!
 ~~~js
@@ -36,13 +45,13 @@ This library already caches all the relevant responses by default, but if you wa
 
 ```js
 // instantiate the client with custom cache/cache manager, if omitted, fallback cache will be used
-const tinder = new Tinder("X-AUTH-TOKEN", MyCustomCache)
+const tinder = new Tinder("X-AUTH-TOKEN", { cache: myCustomCache })
 ```
-
+The options object we are passing looks like this:
 ```js
 const options = {
-    max: 500,               // max amount of items in cache
-    maxAge: 100 * 60 * 60   // max livetime in milliseconds
+    maxItems: 500,           // max amount of items in cache
+    maxAge: 1000 * 60 * 60   // max livetime in milliseconds
 }
 ```
 Make sure your cache manager has the following methods available:
