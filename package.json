@@ -1,5 +1,5 @@
 {
-  "name": "tinderjs",
+  "name": "@rednit/tinderjs",
   "version": "1.0.0",
   "description": "Javascript Wrapper for the Tinder API",
   "main": "dist/index.js",

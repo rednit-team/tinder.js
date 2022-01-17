@@ -23,3 +23,5 @@ jobs:
         env:
           NODE_ENV: production
       - run: npm run build
+      # TODO: implement npm login
+      - run: npm publish
