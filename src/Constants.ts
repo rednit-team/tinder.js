@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * The default date format that is used to format datetime
  * @see DateConstructor.UTC

@@ -1,9 +1,7 @@
 /**
  * Is being used to display data on face recognition.
- *
- * @type FaceRecognitionData Used on different types to display data on face recognition
  */
-export type FaceRecognitionData = {
+export interface FaceRecognitionData {
   /**
    * The width of the profile picture
    */
@@ -24,10 +22,8 @@ export type FaceRecognitionData = {
 
 /**
  * Displays all faces on a tinder profile picture.
- *
- * @type CropInfoFace Subtype if the type CropInfo
  */
-export type CropInfoFace = {
+export interface CropInfoFace {
   /**
    * The information on the face that was provided by the tinder algorithm.
    */
@@ -40,10 +36,8 @@ export type CropInfoFace = {
 
 /**
  * The crop info of an profile picture.
- *
- * @type CropInfo The crop information of an users profile picture
  */
-export type CropInfo = {
+export interface CropInfo {
   /**
    * The face recognition data the user applied himself.
    */

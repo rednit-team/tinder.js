@@ -1,9 +1,9 @@
-import { ParseableInterface } from "./ModelInterfaces";
-import { CropInfo } from "./CropInfo";
-import { ProcessedFile } from "./Files";
-import { ValueHash } from "./Hashes";
-import {parse} from "date-fns";
-import { DATE_TIME_FORMAT } from "../Constants";
+import { parse } from 'date-fns';
+import { ParseableInterface } from './ModelInterfaces';
+import { CropInfo } from './CropInfo';
+import { ProcessedFile } from './Files';
+import { ValueHash } from './Hashes';
+import { DATE_TIME_FORMAT } from '../Constants';
 
 export interface ProfilePhotoData {
   /**
@@ -21,11 +21,11 @@ export interface ProfilePhotoData {
   /**
    * When the profile picture was created
    */
-  created_at: Date|string;
+  created_at: Date | string;
   /**
    * When the profile picture was updated
    */
-  updated_at: Date|string;
+  updated_at: Date | string;
   /**
    * The crop information of the profile picture
    * @see CropInfo
@@ -80,50 +80,16 @@ export interface ProfilePhotoData {
   dhash: ValueHash;
 }
 
-
 /**
  * The class that can be used to perform user specific actions
  *
  * @class ProfilePhoto
  */
 class ProfilePhoto implements ParseableInterface {
-
-  private id: string;
-  private assets: any[];
-  private type: string;
-  private created_at: Date;
-  private updated_at: Date;
-  private crop_info: CropInfo;
-  private url: string;
-  private processedFiles: ProcessedFile[];
-  private fileName: string;
-  private extension: string;
-  private fbId: string;
-  private webp_qf: any[];
-  private rank: number;
-  private score: number;
-  private win_count: number;
-  private phash: ValueHash;
-  private dhash: ValueHash;
+  private profilePhotoData: ProfilePhotoData;
 
   constructor(data: ProfilePhotoData) {
-    this.id = data.id;
-    this.assets = data.assets;
-    this.type = data.type;
-    this.created_at = this.parseDateTime(data.created_at);
-    this.updated_at = this.parseDateTime(data.updated_at);
-    this.crop_info = data.crop_info;
-    this.url = data.url;
-    this.processedFiles = data.processedFiles;
-    this.fileName = data.fileName;
-    this.extension = data.extension;
-    this.fbId = data.fbId;
-    this.webp_qf = data.webp_qf;
-    this.rank = data.rank;
-    this.score = data.score;
-    this.win_count = data.win_count;
-    this.phash = data.phash;
-    this.dhash = data.dhash;
+    this.profilePhotoData = data;
   }
 
   /**
@@ -131,10 +97,9 @@ class ProfilePhoto implements ParseableInterface {
    *
    * @param datetime The date string or object
    */
-  parseDateTime(datetime: Date|string): Date {
+  parseDateTime(datetime: Date | string): Date {
     return typeof datetime === 'string'
       ? parse(datetime as string, DATE_TIME_FORMAT, new Date())
       : datetime;
   }
-
 }

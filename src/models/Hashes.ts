@@ -12,4 +12,4 @@ export type ValueHash = {
    * The value of the hash
    */
   value: number;
-}
+};

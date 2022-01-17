@@ -4,5 +4,5 @@ export interface ParseableInterface {
    *
    * @param datetime The initial date string
    */
-  parseDateTime(datetime: Date|string): Date;
+  parseDateTime(datetime: Date | string): Date;
 }

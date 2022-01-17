@@ -21,4 +21,4 @@ export type ProcessedFile = {
    * @supported Only within a descriptor image
    */
   quality?: string;
-}
+};
