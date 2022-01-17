@@ -1,5 +1,5 @@
 
-name: GH-Pages
+name: NPM publish
 
 on:
   release:
@@ -24,4 +24,4 @@ jobs:
           NODE_ENV: production
       - run: npm run build
       # TODO: implement npm login
-      - run: npm publish
+      #- run: npm publish
