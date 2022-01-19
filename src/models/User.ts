@@ -13,13 +13,8 @@ import { DescriptorInterface } from "./Descriptor";
 import { BadgeInterface } from "./Badge";
 import { TeaserInterface } from "./Teaser";
 import { SexualOrientationInterface } from "./SexualOrientation";
+import { UserPhotoInterface } from "./UserPhoto";
 
-export type Photo = Pick<
-  PhotoInterface,
-  'id' | 'crop_info' | 'url' | 'processedFiles' | 'fileName' | 'extension'
-  > & {
-  media_type: string;
-};
 
 export interface UserInterface {
   /**
@@ -101,7 +96,7 @@ export interface UserInterface {
   /**
    * All photos of the user
    */
-  photos: Photo[];
+  photos: UserPhotoInterface[];
   /**
    * All common likes of the user
    */
