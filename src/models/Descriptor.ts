@@ -1,7 +1,7 @@
 /**
  * The base model of an descriptor
  */
-import { ProcessedFileInterface } from "./Files";
+import { SizedImage } from "./SizedImage";
 import { ChoiceSelectionInterface } from "./Other";
 
 export interface DescriptorInterface {
@@ -28,7 +28,7 @@ export interface DescriptorInterface {
   /**
    * The icon urls of an descriptor
    */
-  icon_urls: ProcessedFileInterface[];
+  icon_urls: SizedImage[];
   /**
    * The choice selections of a descriptor.
    */

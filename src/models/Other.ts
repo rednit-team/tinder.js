@@ -1,5 +1,5 @@
 import { CropInfoInterface } from "./CropInfo";
-import { ProcessedFileInterface } from "./Files";
+import { SizedImage } from "./SizedImage";
 import { ValueHash } from "./Hashes";
 
 export interface PhotoInterface {
@@ -34,9 +34,9 @@ export interface PhotoInterface {
   url: string;
   /**
    * All processed files in the profile picture itself
-   * @see ProcessedFileInterface
+   * @see SizedImage
    */
-  processedFiles: ProcessedFileInterface[];
+  processedFiles: SizedImage[];
   /**
    * The name of the profile picture file
    */

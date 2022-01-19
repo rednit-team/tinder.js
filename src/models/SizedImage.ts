@@ -1,9 +1,9 @@
 /**
  * The general type for an processed file.
  *
- * @type ProcessedFileInterface A file that was processed by the server
+ * @type SizedImage A file that was processed by the server
  */
-export interface ProcessedFileInterface {
+export interface SizedImage {
   /**
    * The height of an image
    */

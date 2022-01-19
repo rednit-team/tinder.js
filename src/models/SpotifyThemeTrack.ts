@@ -1,7 +1,7 @@
 /**
  * A spotify artist
  */
-import { ProcessedFileInterface } from "./Files";
+import { SizedImage } from "./SizedImage";
 
 export interface SpotifyArtistInterface {
   /**
@@ -29,7 +29,7 @@ export interface SpotifyAlbumInterface {
   /**
    * All images of the album
    */
-  images: ProcessedFileInterface[];
+  images: SizedImage[];
 }
 
 /**
