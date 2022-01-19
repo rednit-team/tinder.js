@@ -30,3 +30,5 @@ class SpotifyTopArtist {
     this.spotifyTopArtistData = data;
   }
 }
+
+export default SpotifyTopArtist;

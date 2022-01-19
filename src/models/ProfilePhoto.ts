@@ -1,84 +1,10 @@
 import { parse } from 'date-fns';
 import { ParseableInterface } from './ModelInterfaces';
-import { ValueHash } from './Hashes';
 import { DATE_TIME_FORMAT } from '../Constants';
-import { CropInfoInterface } from "./CropInfo";
-import { ProcessedFileInterface } from "./Files";
+import { PhotoInterface } from "./Other";
 
-export interface ProfilePhotoInterface {
-  /**
-   * The ID of the user
-   */
-  id: string;
-  /**
-   * All assets of the profile picture
-   */
-  assets: any[];
-  /**
-   * The type of the profile picture
-   */
-  type: string;
-  /**
-   * When the profile picture was created
-   */
-  created_at: Date | string;
-  /**
-   * When the profile picture was updated
-   */
-  updated_at: Date | string;
-  /**
-   * The crop information of the profile picture
-   * @see CropInfoInterface
-   */
-  crop_info: CropInfoInterface;
-  /**
-   * The url that resolves to the profile picture
-   */
-  url: string;
-  /**
-   * All processed files in the profile picture itself
-   * @see ProcessedFileInterface
-   */
-  processedFiles: ProcessedFileInterface[];
-  /**
-   * The name of the profile picture file
-   */
-  fileName: string;
-  /**
-   * The extension of the profile picture file
-   */
-  extension: string;
-  /**
-   * @ignore No description provided
-   */
-  fbId: string;
-  /**
-   * @ignore No description provided
-   */
-  webp_qf: any[];
-  /**
-   * The rank of the profile picture
-   */
-  rank: number;
-  /**
-   * The score of the profile picture
-   */
-  score: number;
-  /**
-   * The win count of the profile picture
-   */
-  win_count: number;
-  /**
-   * The phash of the profile picture
-   * @see ValueHash
-   */
-  phash: ValueHash;
-  /**
-   * The dhash of the profile picture
-   * @see ValueHash
-   */
-  dhash: ValueHash;
-}
+
+
 
 /**
  * The class that can be used to perform user specific actions
@@ -86,9 +12,9 @@ export interface ProfilePhotoInterface {
  * @class ProfilePhoto
  */
 class ProfilePhoto implements ParseableInterface {
-  private profilePhotoData: ProfilePhotoInterface;
+  private profilePhotoData: PhotoInterface;
 
-  constructor(data: ProfilePhotoInterface) {
+  constructor(data: PhotoInterface) {
     this.profilePhotoData = data;
   }
 

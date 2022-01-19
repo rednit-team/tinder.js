@@ -1,14 +1,81 @@
-import { ProfilePhotoInterface } from './ProfilePhoto';
+import { CropInfoInterface } from "./CropInfo";
+import { ProcessedFileInterface } from "./Files";
+import { ValueHash } from "./Hashes";
 
-/**
- * The base model of an photo
- */
-export type PhotoInterface = Pick<
-  ProfilePhotoInterface,
-  'id' | 'crop_info' | 'url' | 'processedFiles' | 'fileName' | 'extension'
-> & {
-  media_type: string;
-};
+export interface PhotoInterface {
+  /**
+   * The ID of the user
+   */
+  id: string;
+  /**
+   * All assets of the profile picture
+   */
+  assets: any[];
+  /**
+   * The type of the profile picture
+   */
+  type: string;
+  /**
+   * When the profile picture was created
+   */
+  created_at?: Date | string;
+  /**
+   * When the profile picture was updated
+   */
+  updated_at?: Date | string;
+  /**
+   * The crop information of the profile picture
+   * @see CropInfoInterface
+   */
+  crop_info: CropInfoInterface;
+  /**
+   * The url that resolves to the profile picture
+   */
+  url: string;
+  /**
+   * All processed files in the profile picture itself
+   * @see ProcessedFileInterface
+   */
+  processedFiles: ProcessedFileInterface[];
+  /**
+   * The name of the profile picture file
+   */
+  fileName: string;
+  /**
+   * The extension of the profile picture file
+   */
+  extension: string;
+  /**
+   * @ignore No description provided
+   */
+  fbId?: string;
+  /**
+   * @ignore No description provided
+   */
+  webp_qf: any[];
+  /**
+   * The rank of the profile picture
+   */
+  rank: number;
+  /**
+   * The score of the profile picture
+   */
+  score: number;
+  /**
+   * The win count of the profile picture
+   */
+  win_count: number;
+  /**
+   * The phash of the profile picture
+   * @see ValueHash
+   */
+  phash?: ValueHash;
+  /**
+   * The dhash of the profile picture
+   * @see ValueHash
+   */
+  dhash?: ValueHash;
+}
 
 /**
  * The base model of a choice selection

@@ -7,12 +7,19 @@ import { SchoolInterface } from "./School";
 import {
   CityInterface,
   PhotoInterface,
-  SexualOrientationInterface,
-  TeaserInterface,
   UserInterestsInterface
 } from "./Other";
 import { DescriptorInterface } from "./Descriptor";
 import { BadgeInterface } from "./Badge";
+import { TeaserInterface } from "./Teaser";
+import { SexualOrientationInterface } from "./SexualOrientation";
+
+export type Photo = Pick<
+  PhotoInterface,
+  'id' | 'crop_info' | 'url' | 'processedFiles' | 'fileName' | 'extension'
+  > & {
+  media_type: string;
+};
 
 export interface UserInterface {
   /**
@@ -94,7 +101,7 @@ export interface UserInterface {
   /**
    * All photos of the user
    */
-  photos: PhotoInterface[];
+  photos: Photo[];
   /**
    * All common likes of the user
    */
