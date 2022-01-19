@@ -34,6 +34,8 @@ export interface SpotifyAlbumInterface {
 
 /**
  * A spotify theme track
+ * @interface SpotifyTrackInterface
+ * NOTE: This type is the sane as Song-Attachment
  */
 export interface SpotifyTrackInterface {
   /**
