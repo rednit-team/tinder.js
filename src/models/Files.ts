@@ -1,9 +1,9 @@
 /**
  * The general type for an processed file.
  *
- * @type ProcessedFile A file that was processed by the server
+ * @type ProcessedFileInterface A file that was processed by the server
  */
-export type ProcessedFile = {
+export interface ProcessedFileInterface {
   /**
    * The height of an image
    */
@@ -21,4 +21,4 @@ export type ProcessedFile = {
    * @supported Only within a descriptor image
    */
   quality?: string;
-};
+}

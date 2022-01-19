@@ -1,7 +1,7 @@
 /**
  * A school that can be assigned to an user
  */
-export interface School {
+export interface SchoolInterface {
   /**
    * If the school should be displayed
    */

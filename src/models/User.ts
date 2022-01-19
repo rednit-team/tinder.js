@@ -1,18 +1,18 @@
 import { parse } from 'date-fns';
-import { SpotifyThemeTrack } from './SpotifyThemeTrack';
-import { Job } from './Job';
-import { School } from './School';
-import {
-  Badge,
-  City,
-  Photo,
-  SexualOrientation,
-  Teaser,
-  UserInterests,
-} from './Other';
-import { Descriptor } from './Descriptor';
 import { ParseableInterface } from './ModelInterfaces';
 import { DATE_TIME_FORMAT } from '../Constants';
+import { SpotifyTrackInterface } from "./SpotifyThemeTrack";
+import { JobInterface } from "./Job";
+import { SchoolInterface } from "./School";
+import {
+  BadgeInterface,
+  CityInterface,
+  PhotoInterface,
+  SexualOrientationInterface,
+  TeaserInterface,
+  UserInterestsInterface
+} from "./Other";
+import { DescriptorInterface } from "./Descriptor";
 
 export interface UserData {
   /**
@@ -30,7 +30,7 @@ export interface UserData {
   /**
    * The spotify theme track of an user
    */
-  spotify_theme_track: SpotifyThemeTrack;
+  spotify_theme_track: SpotifyTrackInterface;
   /**
    * The distance to this user
    */
@@ -58,15 +58,15 @@ export interface UserData {
   /**
    * The Job of an user
    */
-  jobs: Job[];
+  jobs: JobInterface[];
   /**
    * All schools of an user
    */
-  schools: School[];
+  schools: SchoolInterface[];
   /**
    * All teasers of an user
    */
-  teasers: Teaser[];
+  teasers: TeaserInterface[];
   /**
    * The gender of an user
    */
@@ -78,7 +78,7 @@ export interface UserData {
   /**
    * All sexual orientations of an user
    */
-  sexual_orientations: SexualOrientation[];
+  sexual_orientations: SexualOrientationInterface[];
   /**
    * Some information about the birth-date of the user
    */
@@ -90,11 +90,11 @@ export interface UserData {
   /**
    * All badges of the user
    */
-  badges: Badge[];
+  badges: BadgeInterface[];
   /**
    * All photos of the user
    */
-  photos: Photo[];
+  photos: PhotoInterface[];
   /**
    * All common likes of the user
    */
@@ -110,7 +110,7 @@ export interface UserData {
   /**
    * All selected descriptors of an user
    */
-  selected_descriptors: Descriptor[];
+  selected_descriptors: DescriptorInterface[];
   /**
    * The s number of an user
    */
@@ -126,11 +126,11 @@ export interface UserData {
   /**
    * The city the user lives in
    */
-  city: City;
+  city: CityInterface;
   /**
    * All interests of an user
    */
-  user_interests: UserInterests;
+  user_interests: UserInterestsInterface;
 }
 
 class User implements ParseableInterface {

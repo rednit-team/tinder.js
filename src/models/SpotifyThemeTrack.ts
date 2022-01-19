@@ -1,9 +1,9 @@
-import { ProcessedFile } from './Files';
-
 /**
  * A spotify artist
  */
-export interface SpotifyArtist {
+import { ProcessedFileInterface } from "./Files";
+
+export interface SpotifyArtistInterface {
   /**
    * The ID of the artist
    */
@@ -17,7 +17,7 @@ export interface SpotifyArtist {
 /**
  * A spotify album
  */
-export interface SpotifyAlbum {
+export interface SpotifyAlbumInterface {
   /**
    * The ID of the album
    */
@@ -29,13 +29,13 @@ export interface SpotifyAlbum {
   /**
    * All images of the album
    */
-  images: ProcessedFile[];
+  images: ProcessedFileInterface[];
 }
 
 /**
  * A spotify theme track
  */
-export interface SpotifyThemeTrack {
+export interface SpotifyTrackInterface {
   /**
    * The ID of the theme track
    */
@@ -47,15 +47,15 @@ export interface SpotifyThemeTrack {
   /**
    * The album of the theme track
    */
-  album: SpotifyAlbum;
+  album: SpotifyAlbumInterface;
   /**
    * All artists on the theme track
    */
-  artists: SpotifyArtist[];
+  artists: SpotifyArtistInterface[];
   /**
    * The preview url of the theme track
    */
-  preview_url: string;
+  preview_url?: string;
   /**
    * The uri of the theme track
    */

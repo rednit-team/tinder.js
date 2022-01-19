@@ -1,7 +1,7 @@
 /**
  * Is being used to display data on face recognition.
  */
-export interface FaceRecognitionData {
+export interface FaceRecognitionInterface {
   /**
    * The width of the profile picture
    */
@@ -23,11 +23,11 @@ export interface FaceRecognitionData {
 /**
  * Displays all faces on a tinder profile picture.
  */
-export interface CropInfoFace {
+export interface CropInfoFaceInterface {
   /**
    * The information on the face that was provided by the tinder algorithm.
    */
-  algo: FaceRecognitionData;
+  algo: FaceRecognitionInterface;
   /**
    * The percentage value of the bounding box.
    */
@@ -37,15 +37,15 @@ export interface CropInfoFace {
 /**
  * The crop info of an profile picture.
  */
-export interface CropInfo {
+export interface CropInfoInterface {
   /**
    * The face recognition data the user applied himself.
    */
-  user: FaceRecognitionData;
+  user: FaceRecognitionInterface;
   /**
    * The face recognition data that was applied by the user itself
    */
-  algo: FaceRecognitionData;
+  algo: FaceRecognitionInterface;
   /**
    * @ignore No description provided
    */
@@ -57,5 +57,5 @@ export interface CropInfo {
   /**
    * The face recognition data of all faces on the profile picture.
    */
-  faces: CropInfoFace[];
+  faces: CropInfoFaceInterface[];
 }

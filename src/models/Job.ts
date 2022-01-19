@@ -1,7 +1,7 @@
 /**
  * The company of an job
  */
-export interface JobCompany {
+export interface JobCompanyInterface {
   displayed: boolean;
   name: string;
 }
@@ -9,7 +9,7 @@ export interface JobCompany {
 /**
  * The title of an job
  */
-export interface JobTitle {
+export interface JobTitleInterface {
   displayed: boolean;
   name: string;
 }
@@ -17,13 +17,13 @@ export interface JobTitle {
 /**
  * An jon of an user
  */
-export interface Job {
+export interface JobInterface {
   /**
    * The company of the job
    */
-  company: JobCompany;
+  company: JobCompanyInterface;
   /**
    * The title of the job
    */
-  title: JobTitle;
+  title: JobTitleInterface;
 }

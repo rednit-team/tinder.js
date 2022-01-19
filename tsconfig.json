@@ -1,23 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "declaration": true,
-    "outDir": "./dist",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "target": "es5",
+    "module": "commonjs",
     "moduleResolution": "node",
+    "allowJs": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
-  },
-  "typedocOptions": {
-    "entryPoints": ["src/index.ts"],
-    "out": "docs"
+    "declaration": false,
+    "outDir": "dist/",
+    "lib": [
+      "es7",
+      "dom"
+    ]
   },
   "include": [
     "src/**/*"

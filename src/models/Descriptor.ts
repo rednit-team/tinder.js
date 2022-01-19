@@ -1,10 +1,10 @@
-import { ProcessedFile } from './Files';
-import { ChoiceSelection } from './Other';
-
 /**
  * The base model of an descriptor
  */
-export interface Descriptor {
+import { ProcessedFileInterface } from "./Files";
+import { ChoiceSelectionInterface } from "./Other";
+
+export interface DescriptorInterface {
   /**
    * The ID of an descriptor
    */
@@ -28,9 +28,9 @@ export interface Descriptor {
   /**
    * The icon urls of an descriptor
    */
-  icon_urls: ProcessedFile[];
+  icon_urls: ProcessedFileInterface[];
   /**
    * The choice selections of a descriptor.
    */
-  choice_selections: ChoiceSelection[];
+  choice_selections: ChoiceSelectionInterface[];
 }

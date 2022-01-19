@@ -1,11 +1,11 @@
 import { parse } from 'date-fns';
 import { ParseableInterface } from './ModelInterfaces';
-import { CropInfo } from './CropInfo';
-import { ProcessedFile } from './Files';
 import { ValueHash } from './Hashes';
 import { DATE_TIME_FORMAT } from '../Constants';
+import { CropInfoInterface } from "./CropInfo";
+import { ProcessedFileInterface } from "./Files";
 
-export interface ProfilePhotoData {
+export interface ProfilePhotoInterface {
   /**
    * The ID of the user
    */
@@ -28,18 +28,18 @@ export interface ProfilePhotoData {
   updated_at: Date | string;
   /**
    * The crop information of the profile picture
-   * @see CropInfo
+   * @see CropInfoInterface
    */
-  crop_info: CropInfo;
+  crop_info: CropInfoInterface;
   /**
    * The url that resolves to the profile picture
    */
   url: string;
   /**
    * All processed files in the profile picture itself
-   * @see ProcessedFile
+   * @see ProcessedFileInterface
    */
-  processedFiles: ProcessedFile[];
+  processedFiles: ProcessedFileInterface[];
   /**
    * The name of the profile picture file
    */
@@ -86,9 +86,9 @@ export interface ProfilePhotoData {
  * @class ProfilePhoto
  */
 class ProfilePhoto implements ParseableInterface {
-  private profilePhotoData: ProfilePhotoData;
+  private profilePhotoData: ProfilePhotoInterface;
 
-  constructor(data: ProfilePhotoData) {
+  constructor(data: ProfilePhotoInterface) {
     this.profilePhotoData = data;
   }
 

@@ -1,9 +1,9 @@
 /**
  * The teaser of an user
  */
-import { ProfilePhotoData } from './ProfilePhoto';
+import { ProfilePhotoInterface } from './ProfilePhoto';
 
-export interface Teaser {
+export interface TeaserInterface {
   /**
    * The type of an teaser
    */
@@ -17,7 +17,7 @@ export interface Teaser {
 /**
  * The sexual orientation of an user
  */
-export interface SexualOrientation {
+export interface SexualOrientationInterface {
   /**
    * The ID of the sexual orientation
    */
@@ -31,7 +31,7 @@ export interface SexualOrientation {
 /**
  * The badge of an user
  */
-export interface Badge {
+export interface BadgeInterface {
   /**
    * The type of the badge
    */
@@ -41,8 +41,8 @@ export interface Badge {
 /**
  * The base model of an photo
  */
-export type Photo = Pick<
-  ProfilePhotoData,
+export type PhotoInterface = Pick<
+  ProfilePhotoInterface,
   'id' | 'crop_info' | 'url' | 'processedFiles' | 'fileName' | 'extension'
 > & {
   media_type: string;
@@ -51,7 +51,7 @@ export type Photo = Pick<
 /**
  * The base model of a choice selection
  */
-export interface ChoiceSelection {
+export interface ChoiceSelectionInterface {
   /**
    * The ID of an choice selection
    */
@@ -65,7 +65,7 @@ export interface ChoiceSelection {
 /**
  * The city of an user
  */
-export interface City {
+export interface CityInterface {
   /**
    * The name of an city
    */
@@ -75,7 +75,7 @@ export interface City {
 /**
  * A general interest
  */
-export interface Interest {
+export interface InterestInterface {
   /**
    * The ID of an interest
    */
@@ -89,9 +89,9 @@ export interface Interest {
 /**
  * All interests of an user
  */
-export interface UserInterests {
+export interface UserInterestsInterface {
   /**
    * All interests the user has selected
    */
-  selected_interests: Interest[];
+  selected_interests: InterestInterface[];
 }
