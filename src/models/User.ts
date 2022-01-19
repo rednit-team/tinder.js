@@ -14,35 +14,35 @@ import {
 } from "./Other";
 import { DescriptorInterface } from "./Descriptor";
 
-export interface UserData {
+export interface UserInterface {
   /**
    * All friends of an user
    */
-  common_friends: any[];
+  common_friends?: any[];
   /**
    * The number of all friends of an user
    */
-  common_friend_count: number;
+  common_friend_count?: number;
   /**
    * The top artists on spotify of an user
    */
-  spotify_top_artists: any[];
+  spotify_top_artists?: any[];
   /**
    * The spotify theme track of an user
    */
-  spotify_theme_track: SpotifyTrackInterface;
+  spotify_theme_track?: SpotifyTrackInterface;
   /**
    * The distance to this user
    */
-  distance_mi: number;
+  distance_mi?: number;
   /**
    * The connection count of the user
    */
-  connection_count: number;
+  connection_count?: number;
   /**
    * All common connections of an user
    */
-  common_connections: any[];
+  common_connections?: any[];
   /**
    * The bio of an user
    */
@@ -58,15 +58,15 @@ export interface UserData {
   /**
    * The Job of an user
    */
-  jobs: JobInterface[];
+  jobs?: JobInterface[];
   /**
    * All schools of an user
    */
-  schools: SchoolInterface[];
+  schools?: SchoolInterface[];
   /**
    * All teasers of an user
    */
-  teasers: TeaserInterface[];
+  teasers?: TeaserInterface[];
   /**
    * The gender of an user
    */
@@ -74,15 +74,15 @@ export interface UserData {
   /**
    * If the gender of an user should be displayed in the profile
    */
-  show_gender_on_profile: boolean;
+  show_gender_on_profile?: boolean;
   /**
    * All sexual orientations of an user
    */
-  sexual_orientations: SexualOrientationInterface[];
+  sexual_orientations?: SexualOrientationInterface[];
   /**
    * Some information about the birth-date of the user
    */
-  birth_date_info: string;
+  birth_date_info?: string;
   /**
    * The ping time of the user
    */
@@ -98,23 +98,23 @@ export interface UserData {
   /**
    * All common likes of the user
    */
-  common_likes: any[];
+  common_likes?: any[];
   /**
    * The number of all common likes of an user
    */
-  common_like_count: number;
+  common_like_count?: number;
   /**
    * All common interests with an user
    */
-  common_interests: any[];
+  common_interests?: any[];
   /**
    * All selected descriptors of an user
    */
-  selected_descriptors: DescriptorInterface[];
+  selected_descriptors?: DescriptorInterface[];
   /**
    * The s number of an user
    */
-  s_number: number;
+  s_number?: number;
   /**
    * The ID of the user
    */
@@ -122,21 +122,29 @@ export interface UserData {
   /**
    * If the user owns tinder U
    */
-  is_tinder_u: boolean;
+  is_tinder_u?: boolean;
   /**
    * The city the user lives in
    */
-  city: CityInterface;
+  city?: CityInterface;
   /**
    * All interests of an user
    */
-  user_interests: UserInterestsInterface;
+  user_interests?: UserInterestsInterface;
+  /**
+   * Hides the distance of the user
+   */
+  hide_distance?: boolean;
+  /**
+   * Hides the age of a profile
+   */
+  hide_age?: boolean;
 }
 
 class User implements ParseableInterface {
-  private userData: UserData;
+  private userData: UserInterface;
 
-  constructor(data: UserData) {
+  constructor(data: UserInterface) {
     this.userData = data;
   }
 
