@@ -13,7 +13,6 @@ export interface SexualOrientationInterface {
 }
 
 class SexualOrientation {
-
   private sexualOrientationData: SexualOrientationInterface;
 
   constructor(data: SexualOrientationInterface) {

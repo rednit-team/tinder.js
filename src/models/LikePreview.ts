@@ -1,4 +1,4 @@
-import { UserPhotoInterface } from "./UserPhoto";
+import { UserPhotoInterface } from './UserPhoto';
 
 /**
  * @interface LikePreviewInterface
@@ -20,11 +20,10 @@ export interface LikePreviewInterface {
      * If the liked user was recently active
      */
     recently_active: boolean;
-  }
+  };
 }
 
 class LikePreview {
-
   private likePreviewData: LikePreviewInterface;
 
   constructor(data: LikePreviewInterface) {

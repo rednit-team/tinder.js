@@ -1,10 +1,7 @@
 import { parse } from 'date-fns';
 import { ParseableInterface } from './ModelInterfaces';
 import { DATE_TIME_FORMAT } from '../Constants';
-import { PhotoInterface } from "./Other";
-
-
-
+import { PhotoInterface } from './Other';
 
 /**
  * The class that can be used to perform user specific actions

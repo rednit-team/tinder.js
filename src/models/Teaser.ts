@@ -13,7 +13,6 @@ export interface TeaserInterface {
 }
 
 class Teaser {
-
   private teaserData: TeaserInterface;
 
   constructor(data: TeaserInterface) {

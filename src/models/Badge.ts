@@ -9,7 +9,6 @@ export interface BadgeInterface {
 }
 
 class Badge {
-
   private badgeData: BadgeInterface;
 
   constructor(data: BadgeInterface) {

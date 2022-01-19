@@ -1,8 +1,8 @@
 /**
  * The base model of an descriptor
  */
-import { SizedImage } from "./SizedImage";
-import { ChoiceSelectionInterface } from "./Other";
+import { SizedImage } from './SizedImage';
+import { ChoiceSelectionInterface } from './Other';
 
 export interface DescriptorInterface {
   /**
@@ -36,7 +36,6 @@ export interface DescriptorInterface {
 }
 
 class Descriptor {
-
   private descriptorData: DescriptorInterface;
 
   constructor(data: DescriptorInterface) {

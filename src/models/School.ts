@@ -17,7 +17,6 @@ export interface SchoolInterface {
 }
 
 class School {
-
   private schoolData: SchoolInterface;
 
   constructor(data: SchoolInterface) {

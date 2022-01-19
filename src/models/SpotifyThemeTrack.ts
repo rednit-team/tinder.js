@@ -1,7 +1,7 @@
 /**
  * A spotify artist
  */
-import { SizedImage } from "./SizedImage";
+import { SizedImage } from './SizedImage';
 
 export interface SpotifyArtistInterface {
   /**
@@ -65,7 +65,6 @@ export interface SpotifyTrackInterface {
 }
 
 class SpotifyTrack {
-
   private trackData: SpotifyTrackInterface;
 
   constructor(data: SpotifyTrackInterface) {

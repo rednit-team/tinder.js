@@ -1,8 +1,8 @@
-import { MessageInterface } from "./Message";
-import { UserInterface } from "./User";
-import { ParseableInterface } from "./ModelInterfaces";
-import { parse } from "date-fns";
-import { DATE_TIME_FORMAT } from "../Constants";
+import { MessageInterface } from './Message';
+import { UserInterface } from './User';
+import { ParseableInterface } from './ModelInterfaces';
+import { parse } from 'date-fns';
+import { DATE_TIME_FORMAT } from '../Constants';
 
 /**
  * The data model of a match
@@ -31,7 +31,7 @@ export interface MatchInterface {
   /**
    * The date when the match was created
    */
-  created_date: Date|string;
+  created_date: Date | string;
   /**
    * If the match is dead
    */
@@ -39,7 +39,7 @@ export interface MatchInterface {
   /**
    * The last activity of the match
    */
-  last_activity_date: Date|string;
+  last_activity_date: Date | string;
   /**
    * The number of messages
    */
@@ -95,7 +95,6 @@ export interface MatchInterface {
 }
 
 class Match implements ParseableInterface {
-
   private matchData: MatchInterface;
 
   constructor(data: MatchInterface) {

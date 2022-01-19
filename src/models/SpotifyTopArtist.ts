@@ -1,4 +1,4 @@
-import { SpotifyTrackInterface } from "./SpotifyThemeTrack";
+import { SpotifyTrackInterface } from './SpotifyThemeTrack';
 
 /**
  * The top artist of a spotify user
@@ -23,7 +23,6 @@ export interface SpotifyTopArtistInterface {
 }
 
 class SpotifyTopArtist {
-
   private spotifyTopArtistData: SpotifyTopArtistInterface;
 
   constructor(data: SpotifyTopArtistInterface) {

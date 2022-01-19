@@ -1,6 +1,6 @@
-import { CropInfoInterface } from "./CropInfo";
-import { SizedImage } from "./SizedImage";
-import { ValueHash } from "./Hashes";
+import { CropInfoInterface } from './CropInfo';
+import { SizedImage } from './SizedImage';
+import { ValueHash } from './Hashes';
 
 export interface PhotoInterface {
   /**

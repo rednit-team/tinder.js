@@ -1,7 +1,7 @@
-import { ContactCardInterface } from "./ContactCard";
-import { ParseableInterface } from "./ModelInterfaces";
-import { parse } from "date-fns";
-import { DATE_TIME_FORMAT } from "../Constants";
+import { ContactCardInterface } from './ContactCard';
+import { ParseableInterface } from './ModelInterfaces';
+import { parse } from 'date-fns';
+import { DATE_TIME_FORMAT } from '../Constants';
 
 /**
  * The base interface of a tinder message
@@ -18,7 +18,7 @@ export interface MessageInterface {
   /**
    * The date when the message was sent
    */
-  sent_date: Date|string;
+  sent_date: Date | string;
   /**
    * The content of the message
    */
@@ -34,7 +34,7 @@ export interface MessageInterface {
   /**
    * The date when the message was created
    */
-  created_date: Date|string;
+  created_date: Date | string;
   /**
    * The timestamp of the message
    */
@@ -54,7 +54,6 @@ export interface MessageInterface {
 }
 
 class Message implements ParseableInterface {
-
   private messageData: MessageInterface;
 
   constructor(data: MessageInterface) {

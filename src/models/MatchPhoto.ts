@@ -1,8 +1,6 @@
-import { PhotoInterface } from "./Other";
-
+import { PhotoInterface } from './Other';
 
 class MatchPhoto {
-
   private matchPhoto: PhotoInterface;
 
   constructor(data: PhotoInterface) {

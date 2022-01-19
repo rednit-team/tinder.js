@@ -1,19 +1,15 @@
 import { parse } from 'date-fns';
 import { ParseableInterface } from './ModelInterfaces';
 import { DATE_TIME_FORMAT } from '../Constants';
-import { SpotifyTrackInterface } from "./SpotifyThemeTrack";
-import { JobInterface } from "./Job";
-import { SchoolInterface } from "./School";
-import {
-  CityInterface,
-  UserInterestsInterface
-} from "./Other";
-import { DescriptorInterface } from "./Descriptor";
-import { BadgeInterface } from "./Badge";
-import { TeaserInterface } from "./Teaser";
-import { SexualOrientationInterface } from "./SexualOrientation";
-import { UserPhotoInterface } from "./UserPhoto";
-
+import { SpotifyTrackInterface } from './SpotifyThemeTrack';
+import { JobInterface } from './Job';
+import { SchoolInterface } from './School';
+import { CityInterface, UserInterestsInterface } from './Other';
+import { DescriptorInterface } from './Descriptor';
+import { BadgeInterface } from './Badge';
+import { TeaserInterface } from './Teaser';
+import { SexualOrientationInterface } from './SexualOrientation';
+import { UserPhotoInterface } from './UserPhoto';
 
 export interface UserInterface {
   /**

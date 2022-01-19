@@ -29,7 +29,6 @@ export interface JobInterface {
 }
 
 class Job {
-
   private jobData: JobInterface;
 
   constructor(data: JobInterface) {

@@ -1,9 +1,9 @@
 /**
  * The type of an instagram photo
  */
-import { ParseableInterface } from "./ModelInterfaces";
-import { parse } from "date-fns";
-import { DATE_TIME_FORMAT } from "../Constants";
+import { ParseableInterface } from './ModelInterfaces';
+import { parse } from 'date-fns';
+import { DATE_TIME_FORMAT } from '../Constants';
 
 export type InstagramPhotoType = {
   /**
@@ -27,7 +27,7 @@ export interface InstagramInterface {
   /**
    * The date of the last data fetch
    */
-  last_fetch_time: Date|string;
+  last_fetch_time: Date | string;
   /**
    * If the initial fetch has been completed
    */
@@ -47,7 +47,6 @@ export interface InstagramInterface {
 }
 
 class Instagram implements ParseableInterface {
-
   private instagramData: InstagramInterface;
 
   constructor(data: InstagramInterface) {

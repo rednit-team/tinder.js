@@ -61,7 +61,6 @@ export interface CropInfoInterface {
 }
 
 class CropInfo {
-
   private cropInfoData: CropInfoInterface;
 
   constructor(data: CropInfoInterface) {

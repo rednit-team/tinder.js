@@ -1,12 +1,11 @@
-import { UserInterface } from "./User";
-import { ParseableInterface } from "./ModelInterfaces";
-import { parse } from "date-fns";
-import { DATE_TIME_FORMAT } from "../Constants";
-
+import { UserInterface } from './User';
+import { ParseableInterface } from './ModelInterfaces';
+import { parse } from 'date-fns';
+import { DATE_TIME_FORMAT } from '../Constants';
 
 export type MatchedUserInterface = Pick<
   UserInterface,
-  '_id'
+  | '_id'
   | 'badges'
   | 'bio'
   | 'birth_date'
@@ -16,10 +15,9 @@ export type MatchedUserInterface = Pick<
   | 'photos'
   | 'hide_distance'
   | 'hide_age'
-  >;
+>;
 
 class MatchedUser implements ParseableInterface {
-
   private matchedUserData: MatchedUserInterface;
 
   constructor(data: MatchedUserInterface) {
