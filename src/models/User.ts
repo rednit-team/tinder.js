@@ -6,7 +6,6 @@ import { JobInterface } from "./Job";
 import { SchoolInterface } from "./School";
 import {
   CityInterface,
-  PhotoInterface,
   UserInterestsInterface
 } from "./Other";
 import { DescriptorInterface } from "./Descriptor";
