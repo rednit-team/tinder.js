@@ -61,3 +61,12 @@ export interface SpotifyTrackInterface {
    */
   uri: string;
 }
+
+class SpotifyTrack {
+
+  private trackData: SpotifyTrackInterface;
+
+  constructor(data: SpotifyTrackInterface) {
+    this.trackData = data;
+  }
+}

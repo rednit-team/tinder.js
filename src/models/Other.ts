@@ -1,42 +1,4 @@
-/**
- * The teaser of an user
- */
 import { ProfilePhotoInterface } from './ProfilePhoto';
-
-export interface TeaserInterface {
-  /**
-   * The type of an teaser
-   */
-  type: string;
-  /**
-   * The value string of an teaser
-   */
-  string: string;
-}
-
-/**
- * The sexual orientation of an user
- */
-export interface SexualOrientationInterface {
-  /**
-   * The ID of the sexual orientation
-   */
-  id: string;
-  /**
-   * The name of the sexual orientation
-   */
-  name: string;
-}
-
-/**
- * The badge of an user
- */
-export interface BadgeInterface {
-  /**
-   * The type of the badge
-   */
-  type: string;
-}
 
 /**
  * The base model of an photo

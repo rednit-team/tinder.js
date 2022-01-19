@@ -34,3 +34,12 @@ export interface DescriptorInterface {
    */
   choice_selections: ChoiceSelectionInterface[];
 }
+
+class Descriptor {
+
+  private descriptorData: DescriptorInterface;
+
+  constructor(data: DescriptorInterface) {
+    this.descriptorData = data;
+  }
+}

@@ -15,3 +15,12 @@ export interface SchoolInterface {
    */
   name: string;
 }
+
+class School {
+
+  private schoolData: SchoolInterface;
+
+  constructor(data: SchoolInterface) {
+    this.schoolData = data;
+  }
+}

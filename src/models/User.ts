@@ -5,7 +5,6 @@ import { SpotifyTrackInterface } from "./SpotifyThemeTrack";
 import { JobInterface } from "./Job";
 import { SchoolInterface } from "./School";
 import {
-  BadgeInterface,
   CityInterface,
   PhotoInterface,
   SexualOrientationInterface,
@@ -13,6 +12,7 @@ import {
   UserInterestsInterface
 } from "./Other";
 import { DescriptorInterface } from "./Descriptor";
+import { BadgeInterface } from "./Badge";
 
 export interface UserInterface {
   /**

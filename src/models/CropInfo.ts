@@ -59,3 +59,12 @@ export interface CropInfoInterface {
    */
   faces: CropInfoFaceInterface[];
 }
+
+class CropInfo {
+
+  private cropInfoData: CropInfoInterface;
+
+  constructor(data: CropInfoInterface) {
+    this.cropInfoData = data;
+  }
+}

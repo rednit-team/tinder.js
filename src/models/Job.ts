@@ -27,3 +27,12 @@ export interface JobInterface {
    */
   title: JobTitleInterface;
 }
+
+class Job {
+
+  private jobData: JobInterface;
+
+  constructor(data: JobInterface) {
+    this.jobData = data;
+  }
+}
