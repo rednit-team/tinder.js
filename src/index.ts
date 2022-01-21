@@ -6,7 +6,9 @@
 /// ///////////////////////////////////////////////////
 
 import HttpService from "./http/HttpService";
+import { Recommendations } from "./http/responses/Recommendations";
 import Update, { UpdateInterface } from "./http/responses/Update";
+import User from "./models/User";
 
 export interface TinderJsConfig {
     xAuthToken?: string;
@@ -60,6 +62,17 @@ class TinderJS {
             '/updates',
             {nudge: true, last_activity_date: lastActivityDate}
         ));
+    }
+
+    /**
+     * Fetches new recommendations from the Tinder API
+     *
+     * @return {*}  {Promise<User[]>} All recommendations as users 
+     * @memberof TinderJS
+     */
+    public async getRecommendations(): Promise<User[]> {
+        return (await this.HttpClient.get<Recommendations>('/recs/core')).results
+            .map((user) => new User(user));
     }
 
 }
