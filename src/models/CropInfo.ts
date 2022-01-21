@@ -1,4 +1,4 @@
-import { FacialScopeInterface } from "./FacialScope";
+import { FacialScopeInterface } from './FacialScope';
 
 /**
  * Displays all faces on a tinder profile picture.

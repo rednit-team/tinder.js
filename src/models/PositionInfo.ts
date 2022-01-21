@@ -1,29 +1,29 @@
 /**
- * The position info interface used for 
+ * The position info interface used for
  * displaying data.
  */
 export interface PositionInfoInterface {
+  /**
+   * The country of the position info
+   */
+  country: {
     /**
-     * The country of the position info
+     * The name of the country
      */
-    country: {
-        /**
-         * The name of the country
-         */
-        name: string;
-        /**
-         * The cc of the country
-         */
-        cc: string;
-        /**
-         * The alpha3 of the country
-         */
-        alpha3: string;
-    }
+    name: string;
     /**
-     * The timezone of the country
+     * The cc of the country
      */
-    timezone: string;
+    cc: string;
+    /**
+     * The alpha3 of the country
+     */
+    alpha3: string;
+  };
+  /**
+   * The timezone of the country
+   */
+  timezone: string;
 }
 
 /**
@@ -32,12 +32,11 @@ export interface PositionInfoInterface {
  * @class PositionInfo
  */
 class PositionInfo {
+  private positionInfoData: PositionInfoInterface;
 
-    private positionInfoData: PositionInfoInterface;
-
-    constructor(data: PositionInfoInterface) {
-        this.positionInfoData = data;
-    }
+  constructor(data: PositionInfoInterface) {
+    this.positionInfoData = data;
+  }
 }
 
 export default PositionInfo;

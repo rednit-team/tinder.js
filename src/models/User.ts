@@ -141,7 +141,7 @@ export interface UserInterface {
 /**
  * Implements some methods to interact with a user
  *
- * @class User 
+ * @class User
  * @implements {ParseableInterface} For parsing data
  */
 class User implements ParseableInterface {

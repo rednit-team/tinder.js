@@ -11,7 +11,7 @@ export type UserPhotoInterface = {
 >;
 
 /**
- * The UserPhoto class that implements some functions to 
+ * The UserPhoto class that implements some functions to
  * interact with.
  * @see UserPhotoInterface
  */
