@@ -7,6 +7,7 @@ import { PhotoInterface } from './Other';
  * The class that can be used to perform user specific actions
  *
  * @class ProfilePhoto
+ * @implements ParseableInterface
  */
 class ProfilePhoto implements ParseableInterface {
   private profilePhotoData: PhotoInterface;
@@ -26,3 +27,5 @@ class ProfilePhoto implements ParseableInterface {
       : datetime;
   }
 }
+
+export default ProfilePhoto;

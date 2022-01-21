@@ -12,6 +12,11 @@ export interface TeaserInterface {
   string: string;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class Teaser
+ */
 class Teaser {
   private teaserData: TeaserInterface;
 

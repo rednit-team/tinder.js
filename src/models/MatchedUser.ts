@@ -17,6 +17,12 @@ export type MatchedUserInterface = Pick<
   | 'hide_age'
 >;
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class MatchedUser
+ * @implements {ParseableInterface}
+ */
 class MatchedUser implements ParseableInterface {
   private matchedUserData: MatchedUserInterface;
 

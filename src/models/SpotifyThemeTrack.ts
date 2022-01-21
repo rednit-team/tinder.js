@@ -64,6 +64,11 @@ export interface SpotifyTrackInterface {
   uri: string;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class SpotifyTrack
+ */
 class SpotifyTrack {
   private trackData: SpotifyTrackInterface;
 
@@ -71,3 +76,5 @@ class SpotifyTrack {
     this.trackData = data;
   }
 }
+
+export default SpotifyTrack;

@@ -138,6 +138,12 @@ export interface UserInterface {
   hide_age?: boolean;
 }
 
+/**
+ * Implements some methods to interact with a user
+ *
+ * @class User 
+ * @implements {ParseableInterface} For parsing data
+ */
 class User implements ParseableInterface {
   private userData: UserInterface;
 

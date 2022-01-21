@@ -28,6 +28,11 @@ export interface JobInterface {
   title: JobTitleInterface;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class Job
+ */
 class Job {
   private jobData: JobInterface;
 
@@ -35,3 +40,5 @@ class Job {
     this.jobData = data;
   }
 }
+
+export default Job;

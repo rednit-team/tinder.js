@@ -26,6 +26,11 @@ export interface PositionInfoInterface {
     timezone: string;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class PositionInfo
+ */
 class PositionInfo {
 
     private positionInfoData: PositionInfoInterface;

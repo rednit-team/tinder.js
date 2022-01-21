@@ -8,6 +8,11 @@ export interface BadgeInterface {
   type: string;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class Badge
+ */
 class Badge {
   private badgeData: BadgeInterface;
 
@@ -15,3 +20,5 @@ class Badge {
     this.badgeData = data;
   }
 }
+
+export default Badge;

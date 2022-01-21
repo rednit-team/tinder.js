@@ -46,6 +46,12 @@ export interface InstagramInterface {
   username: string;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class Instagram
+ * @implements {ParseableInterface}
+ */
 class Instagram implements ParseableInterface {
   private instagramData: InstagramInterface;
 

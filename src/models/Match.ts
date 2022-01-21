@@ -94,6 +94,12 @@ export interface MatchInterface {
   following_moments: boolean;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class Match
+ * @implements {ParseableInterface}
+ */
 class Match implements ParseableInterface {
   private matchData: MatchInterface;
 

@@ -12,6 +12,11 @@ export interface SexualOrientationInterface {
   name: string;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class SexualOrientation
+ */
 class SexualOrientation {
   private sexualOrientationData: SexualOrientationInterface;
 
@@ -19,3 +24,5 @@ class SexualOrientation {
     this.sexualOrientationData = data;
   }
 }
+
+export default SexualOrientation;

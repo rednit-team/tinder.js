@@ -115,6 +115,12 @@ export interface ProfileInterface {
     can_create_squad: boolean;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class Profile
+ * @implements {ParseableInterface}
+ */
 class Profile implements ParseableInterface {
 
     private profileData: ProfileInterface;
@@ -134,3 +140,5 @@ class Profile implements ParseableInterface {
       : datetime;
   }
 }
+
+export default Profile;

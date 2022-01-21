@@ -53,6 +53,12 @@ export interface MessageInterface {
   contact_card: ContactCardInterface;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class Message
+ * @implements {ParseableInterface}
+ */
 class Message implements ParseableInterface {
   private messageData: MessageInterface;
 

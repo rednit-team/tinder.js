@@ -16,6 +16,11 @@ export interface PositionInterface {
     lon: number;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class Position
+ */
 class Position {
 
     private positionData: PositionInterface;
@@ -24,3 +29,5 @@ class Position {
         this.positionData = data;
     }
 }
+
+export default Position;

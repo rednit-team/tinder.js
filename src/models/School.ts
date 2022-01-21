@@ -16,6 +16,11 @@ export interface SchoolInterface {
   name: string;
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class School
+ */
 class School {
   private schoolData: SchoolInterface;
 
@@ -23,3 +28,5 @@ class School {
     this.schoolData = data;
   }
 }
+
+export default School;

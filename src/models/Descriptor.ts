@@ -35,6 +35,11 @@ export interface DescriptorInterface {
   choice_selections: ChoiceSelectionInterface[];
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class Descriptor
+ */
 class Descriptor {
   private descriptorData: DescriptorInterface;
 
@@ -42,3 +47,5 @@ class Descriptor {
     this.descriptorData = data;
   }
 }
+
+export default Descriptor;

@@ -23,6 +23,11 @@ export interface LikePreviewInterface {
   };
 }
 
+/**
+ * Implements some basic methods for interaction
+ *
+ * @class LikePreview
+ */
 class LikePreview {
   private likePreviewData: LikePreviewInterface;
 
@@ -30,3 +35,5 @@ class LikePreview {
     this.likePreviewData = data;
   }
 }
+
+export default LikePreview;
