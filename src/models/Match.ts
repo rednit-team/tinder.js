@@ -1,4 +1,4 @@
-import { MessageInterface } from './Message';
+import Message, { MessageInterface } from './Message';
 import { UserInterface } from './User';
 import { ParseableInterface } from './ModelInterfaces';
 import { parse } from 'date-fns';
@@ -92,6 +92,15 @@ export interface MatchInterface {
    * The following moments
    */
   following_moments: boolean;
+  /**
+   * If the message has been seen
+   */
+  seen?: {
+    /**
+     * If the match has been seen
+     */
+    match_seen: boolean;
+  };
 }
 
 /**
@@ -116,6 +125,26 @@ class Match implements ParseableInterface {
     return typeof datetime === 'string'
       ? parse(datetime as string, DATE_TIME_FORMAT, new Date())
       : datetime;
+  }
+
+  /**
+   * Checks if a match has already been seen
+   *
+   * @return {*}  {boolean} If the match already has been seen
+   * @memberof Match
+   */
+  public getMatchSeen(): boolean {
+    return this.matchData?.seen.match_seen ?? true;
+  }
+
+  /**
+   * Gets all messages of a match 
+   *
+   * @return {*}  {Message[]} All messages of an match
+   * @memberof Match
+   */
+  public getAllMessages(): Message[] {
+    return this.matchData.messages.map((data) => new Message(data));
   }
 }
 

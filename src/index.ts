@@ -6,11 +6,16 @@
 /// ///////////////////////////////////////////////////
 
 import HttpService from "./http/HttpService";
+import Update, { UpdateInterface } from "./http/responses/Update";
 
 export interface TinderJsConfig {
     xAuthToken?: string;
     redirectAuth?: boolean;
     disableRateLimit?: boolean;
+    loginCredentials?: {
+        username: string;
+        password: string;
+    }
 }
 
 const DEFAULT_CONFIG: TinderJsConfig = {
@@ -21,12 +26,14 @@ const DEFAULT_CONFIG: TinderJsConfig = {
 class TinderJS {
 
     private HttpClient: HttpService;
+    private config: TinderJsConfig;
 
     constructor(config: TinderJsConfig|undefined = undefined) {
         this.constructClient(config ?? DEFAULT_CONFIG);
     }
 
     private constructClient(config: TinderJsConfig) {
+        this.config = config;
         if (config.redirectAuth) {
             if (navigator === undefined) {
                 throw new Error("You cannot use redirect auth in a not web environment");
@@ -38,6 +45,21 @@ class TinderJS {
             return;
         }
         throw new Error("If you disabled webauth, you have to provide a X-Auth-Token");
+    }
+    
+    /**
+     * Fetches updates from the tinder API
+     *
+     * @param {(string|undefined)} [lastActivityDate=undefined] The last activity date
+     * @return {*}  {Promise<Update>} The update as an async promise
+     * @memberof TinderJS
+     */
+    public async getUpdates(lastActivityDate: string|undefined = undefined): Promise<Update> {
+        lastActivityDate = lastActivityDate ?? (new Date()).toDateString();
+        return new Update(await this.HttpClient.post<UpdateInterface>(
+            '/updates',
+            {nudge: true, last_activity_date: lastActivityDate}
+        ));
     }
 
 }
