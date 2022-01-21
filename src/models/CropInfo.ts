@@ -1,24 +1,4 @@
-/**
- * Is being used to display data on face recognition.
- */
-export interface FaceRecognitionInterface {
-  /**
-   * The width of the profile picture
-   */
-  width_pct: number;
-  /**
-   * The x offset of the picture
-   */
-  x_offset_pct: number;
-  /**
-   * The height of the profile picture
-   */
-  height_pct: number;
-  /**
-   * The y offset of the picture
-   */
-  y_offset_pct: number;
-}
+import { FacialScopeInterface } from "./FacialScope";
 
 /**
  * Displays all faces on a tinder profile picture.
@@ -27,7 +7,7 @@ export interface CropInfoFaceInterface {
   /**
    * The information on the face that was provided by the tinder algorithm.
    */
-  algo: FaceRecognitionInterface;
+  algo: FacialScopeInterface;
   /**
    * The percentage value of the bounding box.
    */
@@ -41,11 +21,11 @@ export interface CropInfoInterface {
   /**
    * The face recognition data the user applied himself.
    */
-  user: FaceRecognitionInterface;
+  user: FacialScopeInterface;
   /**
    * The face recognition data that was applied by the user itself
    */
-  algo: FaceRecognitionInterface;
+  algo: FacialScopeInterface;
   /**
    * @ignore No description provided
    */
