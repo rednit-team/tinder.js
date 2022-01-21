@@ -1,5 +1,5 @@
-import { UserInterface } from "../../models/User";
+import { UserInterface } from '../../models/User';
 
 export interface Recommendations {
-    results: UserInterface[];
+  results: UserInterface[];
 }

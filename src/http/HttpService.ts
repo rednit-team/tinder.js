@@ -8,17 +8,15 @@ enum RequestMethods {
 }
 
 class HttpService implements HttpServiceInterface {
-
   private headers: Headers;
 
   constructor(xAuthToken: string) {
     this.headers = new Headers({
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'X-Auth-Token': xAuthToken
+      Accept: 'application/json',
+      'X-Auth-Token': xAuthToken,
     });
   }
-
 
   /**
    * Does a GET request to the tinder API

@@ -138,7 +138,7 @@ class Match implements ParseableInterface {
   }
 
   /**
-   * Gets all messages of a match 
+   * Gets all messages of a match
    *
    * @return {*}  {Message[]} All messages of an match
    * @memberof Match
