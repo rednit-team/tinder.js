@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "target": "es5",
     "module": "commonjs",
-    "target": "es2015",
-    "declaration": true,
-    "outDir": "./dist"
-  },
-  "typedocOptions": {
-    "entryPoints": ["src/index.ts"],
-    "out": "docs"
+    "moduleResolution": "node",
+    "allowJs": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "outDir": "dist/",
+    "lib": [
+      "es7",
+      "dom"
+    ]
   },
   "include": [
     "src/**/*"
