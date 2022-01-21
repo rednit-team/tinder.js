@@ -1,11 +1,6 @@
 import { BASE_URL } from '../Constants';
 import { HttpServiceInterface } from './HttpServiceInterface';
 
-const HttpHeaders = {
-  'Content-Type': 'application/json',
-  Accept: 'application/json',
-};
-
 enum RequestMethods {
   GET = 'GET',
   POST = 'POST',
@@ -13,6 +8,18 @@ enum RequestMethods {
 }
 
 class HttpService implements HttpServiceInterface {
+
+  private headers: Headers;
+
+  constructor(xAuthToken: string) {
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-Auth-Token': xAuthToken
+    });
+  }
+
+
   /**
    * Does a GET request to the tinder API
    *
@@ -83,7 +90,7 @@ class HttpService implements HttpServiceInterface {
   ): Promise<T> {
     const fetchResult = await fetch(`${BASE_URL}${path}`, {
       method,
-      headers: HttpHeaders,
+      headers: this.headers,
       body,
     });
 
