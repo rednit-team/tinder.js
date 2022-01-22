@@ -7,11 +7,14 @@
 
 import HttpService from './http/HttpService';
 import { FastMatchTeaserResponse } from './http/responses/FastMatchTeaserResponse';
+import { GetMatchResponse } from './http/responses/GetMatchResponse';
+import { GetUserProfileResponse } from './http/responses/GetUserProfileResponse';
 import { LoadAllMatchesResponse } from './http/responses/LoadAllMatchesResponse';
 import { Recommendations } from './http/responses/Recommendations';
 import Update, { UpdateInterface } from './http/responses/Update';
 import LikePreview from './models/LikePreview';
 import Match from './models/Match';
+import Profile from './models/Profile';
 import User from './models/User';
 
 export interface TinderJsConfig {
@@ -117,6 +120,28 @@ class TinderJS {
       matches.concat(await this.loadAllMatches(data.next_page_token));
     }
     return matches;
+  }
+
+  /**
+   * Fetches a match from the Tinder API
+   *
+   * @param {number} matchId The ID of the match
+   * @return {*}  {Promise<Match>} The match that has been fetched
+   * @memberof TinderJS
+   */
+  public async getMatch(matchId: number): Promise<Match> {
+    return new Match((await this.HttpClient.get<GetMatchResponse>(`/v2/matches/${matchId}`)).data);
+  }
+
+  /**
+   * Fetches a user profile from the Tinder API
+   *
+   * @param {number} userID The ID of the user profile
+   * @return {*}  {Promise<Profile>} The user profile
+   * @memberof TinderJS
+   */
+  public async getUserProfile(userID: number): Promise<Profile> {
+    return new Profile((await this.HttpClient.get<GetUserProfileResponse>(`/user/${userID}`)).results);
   }
 }
 
