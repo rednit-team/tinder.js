@@ -6,8 +6,10 @@
 /// ///////////////////////////////////////////////////
 
 import HttpService from './http/HttpService';
+import { FastMatchTeaserResponse } from './http/responses/FastMatchTeaserResponse';
 import { Recommendations } from './http/responses/Recommendations';
 import Update, { UpdateInterface } from './http/responses/Update';
+import LikePreview from './models/LikePreview';
 import User from './models/User';
 
 export interface TinderJsConfig {
@@ -81,6 +83,17 @@ class TinderJS {
     return (
       await this.HttpClient.get<Recommendations>('/recs/core')
     ).results.map((user) => new User(user));
+  }
+
+  /**
+   * Fetches all like previews from the Tinder API
+   *
+   * @return {*}  {Promise<LikePreview[]>} All like previews
+   * @memberof TinderJS
+   */
+  public async getLikePreviews(): Promise<LikePreview[]> {
+    return (await this.HttpClient.get<FastMatchTeaserResponse>('/v2/fast-match/teasers'))
+      .data.results.map(preview => new LikePreview(preview.user));
   }
 }
 
