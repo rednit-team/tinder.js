@@ -42,7 +42,7 @@ jobs:
       - run: yarn install
       - run: yarn build
 
-  test:
+  unit-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
