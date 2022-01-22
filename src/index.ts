@@ -7,9 +7,11 @@
 
 import HttpService from './http/HttpService';
 import { FastMatchTeaserResponse } from './http/responses/FastMatchTeaserResponse';
+import { LoadAllMatchesResponse } from './http/responses/LoadAllMatchesResponse';
 import { Recommendations } from './http/responses/Recommendations';
 import Update, { UpdateInterface } from './http/responses/Update';
 import LikePreview from './models/LikePreview';
+import Match from './models/Match';
 import User from './models/User';
 
 export interface TinderJsConfig {
@@ -94,6 +96,27 @@ class TinderJS {
   public async getLikePreviews(): Promise<LikePreview[]> {
     return (await this.HttpClient.get<FastMatchTeaserResponse>('/v2/fast-match/teasers'))
       .data.results.map(preview => new LikePreview(preview.user));
+  }
+
+  /**
+   * Fetches all matches from the Tinder API
+   *
+   * @param {(string|null)} [pageToken=null] The pageToken of the next page
+   * @param {number} [count=60] The count of entries 
+   * @return {*}  {Promise<Match[]>} All matches 
+   * @memberof TinderJS
+   */
+  public async loadAllMatches(pageToken: string|null = null, count = 60): Promise<Match[]> {
+    let route = `/v2/matches?count=${count}`;
+    if (pageToken) {
+      route = `${route}&page_token=${pageToken}`;
+    }
+    const data = (await this.HttpClient.get<LoadAllMatchesResponse>(route)).data;
+    const matches: Match[] = data.matches.map(match => new Match(match));
+    if (data.next_page_token) {
+      matches.concat(await this.loadAllMatches(data.next_page_token));
+    }
+    return matches;
   }
 }
 
