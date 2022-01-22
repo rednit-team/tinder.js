@@ -97,25 +97,32 @@ class TinderJS {
    * @memberof TinderJS
    */
   public async getLikePreviews(): Promise<LikePreview[]> {
-    return (await this.HttpClient.get<FastMatchTeaserResponse>('/v2/fast-match/teasers'))
-      .data.results.map(preview => new LikePreview(preview.user));
+    return (
+      await this.HttpClient.get<FastMatchTeaserResponse>(
+        '/v2/fast-match/teasers',
+      )
+    ).data.results.map((preview) => new LikePreview(preview.user));
   }
 
   /**
    * Fetches all matches from the Tinder API
    *
    * @param {(string|null)} [pageToken=null] The pageToken of the next page
-   * @param {number} [count=60] The count of entries 
-   * @return {*}  {Promise<Match[]>} All matches 
+   * @param {number} [count=60] The count of entries
+   * @return {*}  {Promise<Match[]>} All matches
    * @memberof TinderJS
    */
-  public async loadAllMatches(pageToken: string|null = null, count = 60): Promise<Match[]> {
+  public async loadAllMatches(
+    pageToken: string | null = null,
+    count = 60,
+  ): Promise<Match[]> {
     let route = `/v2/matches?count=${count}`;
     if (pageToken) {
       route = `${route}&page_token=${pageToken}`;
     }
-    const data = (await this.HttpClient.get<LoadAllMatchesResponse>(route)).data;
-    const matches: Match[] = data.matches.map(match => new Match(match));
+    const data = (await this.HttpClient.get<LoadAllMatchesResponse>(route))
+      .data;
+    const matches: Match[] = data.matches.map((match) => new Match(match));
     if (data.next_page_token) {
       matches.concat(await this.loadAllMatches(data.next_page_token));
     }
@@ -130,7 +137,11 @@ class TinderJS {
    * @memberof TinderJS
    */
   public async getMatch(matchId: number): Promise<Match> {
-    return new Match((await this.HttpClient.get<GetMatchResponse>(`/v2/matches/${matchId}`)).data);
+    return new Match(
+      (
+        await this.HttpClient.get<GetMatchResponse>(`/v2/matches/${matchId}`)
+      ).data,
+    );
   }
 
   /**
@@ -141,7 +152,11 @@ class TinderJS {
    * @memberof TinderJS
    */
   public async getUserProfile(userID: number): Promise<Profile> {
-    return new Profile((await this.HttpClient.get<GetUserProfileResponse>(`/user/${userID}`)).results);
+    return new Profile(
+      (
+        await this.HttpClient.get<GetUserProfileResponse>(`/user/${userID}`)
+      ).results,
+    );
   }
 }
 

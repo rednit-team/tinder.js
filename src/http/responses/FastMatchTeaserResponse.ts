@@ -1,7 +1,7 @@
-import { LikePreviewInterface } from "../../models/LikePreview";
+import { LikePreviewInterface } from '../../models/LikePreview';
 
 export interface FastMatchTeaserResponse {
-    data: {
-        results: {user: LikePreviewInterface}[]
-    }
+  data: {
+    results: { user: LikePreviewInterface }[];
+  };
 }

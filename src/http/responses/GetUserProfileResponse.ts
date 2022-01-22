@@ -1,5 +1,5 @@
-import { ProfileInterface } from "../../models/Profile";
+import { ProfileInterface } from '../../models/Profile';
 
 export interface GetUserProfileResponse {
-    results: ProfileInterface;
+  results: ProfileInterface;
 }

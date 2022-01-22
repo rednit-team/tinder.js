@@ -1,8 +1,8 @@
-import {MatchInterface} from '../../models/Match';
+import { MatchInterface } from '../../models/Match';
 
 export interface LoadAllMatchesResponse {
-    data: {
-        next_page_token?: string;
-        matches: MatchInterface[];
-    };
+  data: {
+    next_page_token?: string;
+    matches: MatchInterface[];
+  };
 }

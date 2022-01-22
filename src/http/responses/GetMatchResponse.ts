@@ -1,5 +1,5 @@
-import { MatchInterface } from "../../models/Match";
+import { MatchInterface } from '../../models/Match';
 
 export interface GetMatchResponse {
-    data: MatchInterface;
+  data: MatchInterface;
 }

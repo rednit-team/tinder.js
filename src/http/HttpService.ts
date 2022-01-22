@@ -88,7 +88,7 @@ class HttpService implements HttpServiceInterface {
     path: string,
     method: string,
     body: string | undefined = undefined,
-    isJson = true
+    isJson = true,
   ): Promise<T> {
     const fetchResult = await fetch(`${BASE_URL}${path}`, {
       method,
@@ -97,7 +97,7 @@ class HttpService implements HttpServiceInterface {
     });
 
     if (!isJson) {
-      return await fetchResult.text() as unknown as T;
+      return (await fetchResult.text()) as unknown as T;
     }
 
     if (fetchResult.ok) {
