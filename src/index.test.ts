@@ -1,16 +1,14 @@
 import TinderJS from '.';
 
 test('Test creating client with default config in node.js', () => {
-  expect(() => new TinderJS()).toThrow(
-    'You cannot use redirect auth in a not web environment',
-  );
+  expect(() => new TinderJS()).toThrowError();
 });
 
 test('Tests if you can create a client with x-Auth-Token', () => {
   expect(
     () =>
       new TinderJS({
-        xAuthToken: '',
+        xAuthToken: 'token',
       }),
   ).not.toThrowError();
 });

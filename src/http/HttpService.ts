@@ -10,12 +10,13 @@ enum RequestMethods {
 class HttpService implements HttpServiceInterface {
   private headers: Headers;
 
-  constructor(xAuthToken: string) {
+  constructor(xAuthToken: string, customFetch = window.fetch) {
     this.headers = new Headers({
       'Content-Type': 'application/json',
       Accept: 'application/json',
       'X-Auth-Token': xAuthToken,
     });
+    global.fetch = customFetch;
   }
 
   /**
@@ -23,13 +24,14 @@ class HttpService implements HttpServiceInterface {
    *
    * @template T The type the response should be casted into
    * @param {string} path The path of the API endpoint
+   * @param {boolean} isJson If the response if of type json
    * @return {*}  {Promise<T>} The response as promise
    * @memberof HttpService
    * @see HttpServiceInterface
    * @see RequestMethods.GET
    */
-  public async get<T>(path: string): Promise<T> {
-    return await this.doRequest<T>(path, RequestMethods.GET);
+  public async get<T>(path: string, isJson = true): Promise<T> {
+    return await this.doRequest<T>(path, RequestMethods.GET, undefined, isJson);
   }
 
   /**
@@ -78,6 +80,7 @@ class HttpService implements HttpServiceInterface {
    * @param {string} path The path of the API endpoint
    * @param {string} method The method of the request
    * @param {(string|undefined)} [body=undefined] The body of the request
+   * @param {boolean} isJson If the request is of type json
    * @return {*}  {Promise<T>} The async response of the request
    * @memberof HttpService
    */
@@ -85,12 +88,17 @@ class HttpService implements HttpServiceInterface {
     path: string,
     method: string,
     body: string | undefined = undefined,
+    isJson = true
   ): Promise<T> {
     const fetchResult = await fetch(`${BASE_URL}${path}`, {
       method,
       headers: this.headers,
       body,
     });
+
+    if (!isJson) {
+      return await fetchResult.text() as unknown as T;
+    }
 
     if (fetchResult.ok) {
       return (await fetchResult.json()) as T;
