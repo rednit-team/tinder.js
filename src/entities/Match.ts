@@ -1,7 +1,6 @@
 import { parse } from 'date-fns';
 import { DATE_TIME_FORMAT } from '../Constants';
 import { MatchInterface } from '../models/Match';
-import Message from '../models/Message';
 import { ParseableInterface } from '../models/ModelInterfaces';
 
 /**
@@ -36,16 +35,6 @@ class Match implements ParseableInterface {
    */
   public getMatchSeen(): boolean {
     return this.matchData?.seen.match_seen ?? true;
-  }
-
-  /**
-   * Gets all messages of a match
-   *
-   * @return {*}  {Message[]} All messages of an match
-   * @memberof Match
-   */
-  public getAllMessages(): Message[] {
-    return this.matchData.messages.map((data) => new Message(data));
   }
 }
 

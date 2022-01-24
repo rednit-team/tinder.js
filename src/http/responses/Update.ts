@@ -1,5 +1,5 @@
-import Match, { MatchInterface } from '../../models/Match';
-import Message from '../../models/Message';
+import { MatchInterface } from '../../models/Match';
+import {MessageInterface} from '../../models/Message';
 
 /**
  * The response of the /update endpoint
@@ -17,11 +17,11 @@ class Update {
   /**
    * All new messages
    */
-  public new_messages: Message[];
+  public new_messages: MessageInterface[];
   /**
    * All new matches
    */
-  public new_matches: Match[];
+  public new_matches: MatchInterface[];
 
   constructor(update: UpdateInterface) {
     const newMatches = [];
@@ -35,8 +35,8 @@ class Update {
         newMatches.push(match);
       }
     }
-    this.new_messages = newMessages.map((data) => new Message(data));
-    this.new_matches = newMatches.map((data) => new Match(data));
+    this.new_messages = newMessages;
+    this.new_matches = newMatches
   }
 }
 
