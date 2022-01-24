@@ -1,14 +1,16 @@
-import { UserInterface } from "../models/User";
+import { UserInterface } from '../models/User';
 
-type LikedUserData = Pick<UserInterface, 'content_hash' | 'has_been_superliked' | 'expire_date'>;
+type LikedUserData = Pick<
+  UserInterface,
+  'content_hash' | 'has_been_superliked' | 'expire_date'
+>;
 
 class LikedUser {
+  private data: LikedUserData;
 
-    private data: LikedUserData;
-
-    constructor(data: LikedUserData) {
-        this.data = data;
-    }
+  constructor(data: LikedUserData) {
+    this.data = data;
+  }
 }
 
 export default LikedUser;

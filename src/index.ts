@@ -170,7 +170,9 @@ class TinderJS {
    * @memberof TinderJS
    */
   public async getSelfUser(): Promise<SelfUser> {
-    return new SelfUser(await this.HttpClient.get<ProfileInterface>('/profile'));
+    return new SelfUser(
+      await this.HttpClient.get<ProfileInterface>('/profile'),
+    );
   }
 
   /**
