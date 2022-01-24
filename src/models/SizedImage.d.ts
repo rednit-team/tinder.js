@@ -7,15 +7,15 @@ export interface SizedImage {
   /**
    * The height of an image
    */
-  height: number;
+  height?: number;
   /**
    * The width of an image
    */
-  width: number;
+  width?: number;
   /**
    * The url that resolves to an image
    */
-  url: string;
+  url?: string;
   /**
    * The quality of an image
    * @supported Only within a descriptor image

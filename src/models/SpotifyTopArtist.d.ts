@@ -7,17 +7,17 @@ export interface SpotifyTopArtistInterface {
   /**
    * The ID of the top artist
    */
-  id: string;
+  id?: string;
   /**
    * The name of the top artist
    */
-  name: string;
+  name?: string;
   /**
    * If the top artist is selected
    */
-  selected: boolean;
+  selected?: boolean;
   /**
    * The top track of the artist
    */
-  top_track: SpotifyTrackInterface;
+  top_track?: SpotifyTrackInterface;
 }

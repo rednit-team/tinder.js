@@ -5,9 +5,9 @@ export interface TeaserInterface {
   /**
    * The type of an teaser
    */
-  type: string;
+  type?: string;
   /**
    * The value string of an teaser
    */
-  string: string;
+  string?: string;
 }

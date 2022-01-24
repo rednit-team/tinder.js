@@ -1,7 +1,4 @@
 import { UserInterface } from './User';
-import { ParseableInterface } from './ModelInterfaces';
-import { parse } from 'date-fns';
-import { DATE_TIME_FORMAT } from '../Constants';
 
 export type MatchedUserInterface = Pick<
   UserInterface,

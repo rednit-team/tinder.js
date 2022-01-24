@@ -5,5 +5,5 @@ export interface BadgeInterface {
   /**
    * The type of the badge
    */
-  type: string;
+  type?: string;
 }

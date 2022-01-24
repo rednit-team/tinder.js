@@ -6,22 +6,22 @@ export interface PositionInfoInterface {
   /**
    * The country of the position info
    */
-  country: {
+  country?: {
     /**
      * The name of the country
      */
-    name: string;
+    name?: string;
     /**
      * The cc of the country
      */
-    cc: string;
+    cc?: string;
     /**
      * The alpha3 of the country
      */
-    alpha3: string;
+    alpha3?: string;
   };
   /**
    * The timezone of the country
    */
-  timezone: string;
+  timezone?: string;
 }

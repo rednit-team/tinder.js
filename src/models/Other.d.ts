@@ -6,15 +6,15 @@ export interface PhotoInterface {
   /**
    * The ID of the user
    */
-  id: string;
+  id?: string;
   /**
    * All assets of the profile picture
    */
-  assets: any[];
+  assets?: any[];
   /**
    * The type of the profile picture
    */
-  type: string;
+  type?: string;
   /**
    * When the profile picture was created
    */
@@ -27,24 +27,24 @@ export interface PhotoInterface {
    * The crop information of the profile picture
    * @see CropInfoInterface
    */
-  crop_info: CropInfoInterface;
+  crop_info?: CropInfoInterface;
   /**
    * The url that resolves to the profile picture
    */
-  url: string;
+  url?: string;
   /**
    * All processed files in the profile picture itself
    * @see SizedImage
    */
-  processedFiles: SizedImage[];
+  processedFiles?: SizedImage[];
   /**
    * The name of the profile picture file
    */
-  fileName: string;
+  fileName?: string;
   /**
    * The extension of the profile picture file
    */
-  extension: string;
+  extension?: string;
   /**
    * @ignore No description provided
    */
@@ -52,19 +52,19 @@ export interface PhotoInterface {
   /**
    * @ignore No description provided
    */
-  webp_qf: any[];
+  webp_qf?: any[];
   /**
    * The rank of the profile picture
    */
-  rank: number;
+  rank?: number;
   /**
    * The score of the profile picture
    */
-  score: number;
+  score?: number;
   /**
    * The win count of the profile picture
    */
-  win_count: number;
+  win_count?: number;
   /**
    * The phash of the profile picture
    * @see ValueHash
@@ -84,11 +84,11 @@ export interface ChoiceSelectionInterface {
   /**
    * The ID of an choice selection
    */
-  id: string;
+  id?: string;
   /**
    * The name of an choice selection
    */
-  name: string;
+  name?: string;
 }
 
 /**
@@ -98,7 +98,7 @@ export interface CityInterface {
   /**
    * The name of an city
    */
-  name: string;
+  name?: string;
 }
 
 /**
@@ -108,11 +108,11 @@ export interface InterestInterface {
   /**
    * The ID of an interest
    */
-  id: string;
+  id?: string;
   /**
    * The name of an interest
    */
-  name: string;
+  name?: string;
 }
 
 /**
@@ -122,5 +122,5 @@ export interface UserInterestsInterface {
   /**
    * All interests the user has selected
    */
-  selected_interests: InterestInterface[];
+  selected_interests?: InterestInterface[];
 }

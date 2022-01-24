@@ -2,16 +2,16 @@
  * The company of an job
  */
 export interface JobCompanyInterface {
-  displayed: boolean;
-  name: string;
+  displayed?: boolean;
+  name?: string;
 }
 
 /**
  * The title of an job
  */
 export interface JobTitleInterface {
-  displayed: boolean;
-  name: string;
+  displayed?: boolean;
+  name?: string;
 }
 
 /**
@@ -21,9 +21,9 @@ export interface JobInterface {
   /**
    * The company of the job
    */
-  company: JobCompanyInterface;
+  company?: JobCompanyInterface;
   /**
    * The title of the job
    */
-  title: JobTitleInterface;
+  title?: JobTitleInterface;
 }

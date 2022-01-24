@@ -7,11 +7,11 @@ export interface SpotifyArtistInterface {
   /**
    * The ID of the artist
    */
-  id: number;
+  id?: number;
   /**
    * The name of the artist
    */
-  name: string;
+  name?: string;
 }
 
 /**
@@ -21,15 +21,15 @@ export interface SpotifyAlbumInterface {
   /**
    * The ID of the album
    */
-  id: number;
+  id?: number;
   /**
    * The name of the album
    */
-  name: string;
+  name?: string;
   /**
    * All images of the album
    */
-  images: SizedImage[];
+  images?: SizedImage[];
 }
 
 /**
@@ -41,19 +41,19 @@ export interface SpotifyTrackInterface {
   /**
    * The ID of the theme track
    */
-  id: number;
+  id?: number;
   /**
    * The name of the theme track
    */
-  name: string;
+  name?: string;
   /**
    * The album of the theme track
    */
-  album: SpotifyAlbumInterface;
+  album?: SpotifyAlbumInterface;
   /**
    * All artists on the theme track
    */
-  artists: SpotifyArtistInterface[];
+  artists?: SpotifyArtistInterface[];
   /**
    * The preview url of the theme track
    */
@@ -61,5 +61,5 @@ export interface SpotifyTrackInterface {
   /**
    * The uri of the theme track
    */
-  uri: string;
+  uri?: string;
 }

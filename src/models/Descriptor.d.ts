@@ -8,29 +8,29 @@ export interface DescriptorInterface {
   /**
    * The ID of an descriptor
    */
-  id: string;
+  id?: string;
   /**
    * The name of an descriptor
    */
-  name: string;
+  name?: string;
   /**
    * The prompt of an descriptor
    */
-  prompt: string;
+  prompt?: string;
   /**
    * The type of an descriptor
    */
-  type: string;
+  type?: string;
   /**
    * The icon url of an descriptor
    */
-  icon_url: string;
+  icon_url?: string;
   /**
    * The icon urls of an descriptor
    */
-  icon_urls: SizedImage[];
+  icon_urls?: SizedImage[];
   /**
    * The choice selections of a descriptor.
    */
-  choice_selections: ChoiceSelectionInterface[];
+  choice_selections?: ChoiceSelectionInterface[];
 }

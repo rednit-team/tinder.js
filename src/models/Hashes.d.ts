@@ -7,9 +7,9 @@ export type ValueHash = {
   /**
    * The version of the hash
    */
-  version: string;
+  version?: string;
   /**
    * The value of the hash
    */
-  value: number;
+  value?: number;
 };

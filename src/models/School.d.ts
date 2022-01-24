@@ -5,13 +5,13 @@ export interface SchoolInterface {
   /**
    * If the school should be displayed
    */
-  displayed: boolean;
+  displayed?: boolean;
   /**
    * The ID of the meta data of a school
    */
-  metadata_id: string;
+  metadata_id?: string;
   /**
    * The name of the school
    */
-  name: string;
+  name?: string;
 }

@@ -5,13 +5,13 @@ export interface PositionInterface {
   /**
    * The at position of the user
    */
-  at: number;
+  at?: number;
   /**
    * The latitude of the position
    */
-  lat: number;
+  lat?: number;
   /**
    * The longitude of the position
    */
-  lon: number;
+  lon?: number;
 }
