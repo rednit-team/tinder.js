@@ -19,18 +19,3 @@ export interface FacialScopeInterface {
    */
   y_offset_pct: number;
 }
-
-/**
- * Implements some basic methods for interaction
- *
- * @class FacialScope
- */
-class FacialScope {
-  private facialData: FacialScopeInterface;
-
-  constructor(data: FacialScopeInterface) {
-    this.facialData = data;
-  }
-}
-
-export default FacialScope;

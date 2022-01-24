@@ -15,18 +15,3 @@ export interface SchoolInterface {
    */
   name: string;
 }
-
-/**
- * Implements some basic methods for interaction
- *
- * @class School
- */
-class School {
-  private schoolData: SchoolInterface;
-
-  constructor(data: SchoolInterface) {
-    this.schoolData = data;
-  }
-}
-
-export default School;

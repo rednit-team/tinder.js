@@ -45,30 +45,3 @@ export interface InstagramInterface {
    */
   username: string;
 }
-
-/**
- * Implements some basic methods for interaction
- *
- * @class Instagram
- * @implements {ParseableInterface}
- */
-class Instagram implements ParseableInterface {
-  private instagramData: InstagramInterface;
-
-  constructor(data: InstagramInterface) {
-    this.instagramData = data;
-  }
-
-  /**
-   * Parses the date provided by the API
-   *
-   * @param datetime The date string or object
-   */
-  parseDateTime(datetime: Date | string): Date {
-    return typeof datetime === 'string'
-      ? parse(datetime as string, DATE_TIME_FORMAT, new Date())
-      : datetime;
-  }
-}
-
-export default Instagram;

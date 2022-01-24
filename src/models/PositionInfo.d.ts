@@ -25,18 +25,3 @@ export interface PositionInfoInterface {
    */
   timezone: string;
 }
-
-/**
- * Implements some basic methods for interaction
- *
- * @class PositionInfo
- */
-class PositionInfo {
-  private positionInfoData: PositionInfoInterface;
-
-  constructor(data: PositionInfoInterface) {
-    this.positionInfoData = data;
-  }
-}
-
-export default PositionInfo;

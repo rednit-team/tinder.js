@@ -52,30 +52,3 @@ export interface MessageInterface {
    */
   contact_card: ContactCardInterface;
 }
-
-/**
- * Implements some basic methods for interaction
- *
- * @class Message
- * @implements {ParseableInterface}
- */
-class Message implements ParseableInterface {
-  private messageData: MessageInterface;
-
-  constructor(data: MessageInterface) {
-    this.messageData = data;
-  }
-
-  /**
-   * Parses the date provided by the API
-   *
-   * @param datetime The date string or object
-   */
-  parseDateTime(datetime: Date | string): Date {
-    return typeof datetime === 'string'
-      ? parse(datetime as string, DATE_TIME_FORMAT, new Date())
-      : datetime;
-  }
-}
-
-export default Message;

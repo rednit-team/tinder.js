@@ -39,18 +39,3 @@ export interface CropInfoInterface {
    */
   faces: CropInfoFaceInterface[];
 }
-
-/**
- * Implements some basic methods for interaction
- *
- * @class CropInfo
- */
-class CropInfo {
-  private cropInfoData: CropInfoInterface;
-
-  constructor(data: CropInfoInterface) {
-    this.cropInfoData = data;
-  }
-}
-
-export default CropInfo;

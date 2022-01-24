@@ -21,17 +21,3 @@ export interface SpotifyTopArtistInterface {
    */
   top_track: SpotifyTrackInterface;
 }
-/**
- * Implements some basic methods for interaction
- *
- * @class SpotifyTopArtist
- */
-class SpotifyTopArtist {
-  private spotifyTopArtistData: SpotifyTopArtistInterface;
-
-  constructor(data: SpotifyTopArtistInterface) {
-    this.spotifyTopArtistData = data;
-  }
-}
-
-export default SpotifyTopArtist;
