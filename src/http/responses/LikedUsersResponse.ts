@@ -1,7 +1,7 @@
-import { UserInterface } from "../../models/User";
+import { UserInterface } from '../../models/User';
 
 export interface LikedUsersResponse {
-    data: {
-        results: UserInterface[];
-    }
+  data: {
+    results: UserInterface[];
+  };
 }

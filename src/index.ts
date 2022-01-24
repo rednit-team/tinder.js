@@ -177,8 +177,10 @@ class TinderJS {
    * @memberof TinderJS
    */
   public async getLikedUsers(): Promise<User[]> {
-    const result = await this.HttpClient.get<LikedUsersResponse>('/v2/my-likes');
-    return result.data.results.map(user => new User(user));
+    const result = await this.HttpClient.get<LikedUsersResponse>(
+      '/v2/my-likes',
+    );
+    return result.data.results.map((user) => new User(user));
   }
 }
 
