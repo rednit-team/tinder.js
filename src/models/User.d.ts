@@ -10,6 +10,7 @@ import { BadgeInterface } from './Badge';
 import { TeaserInterface } from './Teaser';
 import { SexualOrientationInterface } from './SexualOrientation';
 import { UserPhotoInterface } from './UserPhoto';
+import { ValueHash } from './Hashes';
 
 export interface UserInterface {
   /**
@@ -136,31 +137,20 @@ export interface UserInterface {
    * Hides the age of a profile
    */
   hide_age?: boolean;
-}
-
-/**
- * Implements some methods to interact with a user
- *
- * @class User
- * @implements {ParseableInterface} For parsing data
- */
-class User implements ParseableInterface {
-  private userData: UserInterface;
-
-  constructor(data: UserInterface) {
-    this.userData = data;
-  }
-
   /**
-   * Parses the date provided by the API
-   *
-   * @param datetime The date string or object
+   * If the users group matched
    */
-  parseDateTime(datetime: Date | string): Date {
-    return typeof datetime === 'string'
-      ? parse(datetime as string, DATE_TIME_FORMAT, new Date())
-      : datetime;
-  }
+  group_matched?: boolean;
+  /**
+   * The hash of the user content
+   */
+  content_hash?: ValueHash;
+  /**
+   * If the user has been super-liked
+   */
+  has_been_superliked?: boolean;
+  /**
+   * The date of the expiration
+   */
+  expire_date?: string;
 }
-
-export default User;

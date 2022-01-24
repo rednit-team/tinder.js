@@ -5,6 +5,8 @@
 // open an issue.                                   //
 /// ///////////////////////////////////////////////////
 
+import LikePreview from './entities/LikePreview';
+import Recommendation from './entities/Reccomendation';
 import HttpService from './http/HttpService';
 import { FastMatchTeaserResponse } from './http/responses/FastMatchTeaserResponse';
 import { GetMatchResponse } from './http/responses/GetMatchResponse';
@@ -13,10 +15,11 @@ import { LikedUsersResponse } from './http/responses/LikedUsersResponse';
 import { LoadAllMatchesResponse } from './http/responses/LoadAllMatchesResponse';
 import { Recommendations } from './http/responses/Recommendations';
 import Update, { UpdateInterface } from './http/responses/Update';
-import LikePreview from './models/LikePreview';
-import Match from './models/Match';
-import Profile from './models/Profile';
-import User, { UserInterface } from './models/User';
+import Match from './entities/Match';
+import Profile from './entities/Profile';
+import SelfUser from './entities/SelfUser';
+import { ProfileInterface } from './models/Profile';
+import LikedUser from './entities/LikedUser';
 
 export interface TinderJsConfig {
   xAuthToken?: string;
@@ -85,10 +88,10 @@ class TinderJS {
    * @return {*}  {Promise<User[]>} All recommendations as users
    * @memberof TinderJS
    */
-  public async getRecommendations(): Promise<User[]> {
+  public async getRecommendations(): Promise<Recommendation[]> {
     return (
       await this.HttpClient.get<Recommendations>('/recs/core')
-    ).results.map((user) => new User(user));
+    ).results.map((user) => new Recommendation(user));
   }
 
   /**
@@ -166,8 +169,8 @@ class TinderJS {
    * @return {*}  {Promise<User>} The self user
    * @memberof TinderJS
    */
-  public async getSelfUser(): Promise<User> {
-    return new User(await this.HttpClient.get<UserInterface>('/profile'));
+  public async getSelfUser(): Promise<SelfUser> {
+    return new SelfUser(await this.HttpClient.get<ProfileInterface>('/profile'));
   }
 
   /**
@@ -176,11 +179,11 @@ class TinderJS {
    * @return {*}  {Promise<User[]>} All liked users
    * @memberof TinderJS
    */
-  public async getLikedUsers(): Promise<User[]> {
+  public async getLikedUsers(): Promise<LikedUser[]> {
     const result = await this.HttpClient.get<LikedUsersResponse>(
       '/v2/my-likes',
     );
-    return result.data.results.map((user) => new User(user));
+    return result.data.results.map((user) => new LikedUser(user));
   }
 }
 

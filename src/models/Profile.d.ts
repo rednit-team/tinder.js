@@ -113,31 +113,8 @@ export interface ProfileInterface {
    * If a user can create a squad.
    */
   can_create_squad: boolean;
-}
-
-/**
- * Implements some basic methods for interaction
- *
- * @class Profile
- * @implements {ParseableInterface}
- */
-class Profile implements ParseableInterface {
-  private profileData: ProfileInterface;
-
-  constructor(data: ProfileInterface) {
-    this.profileData = data;
-  }
-
   /**
-   * Parses the date provided by the API
-   *
-   * @param datetime The date string or object
+   * The last online date of the user
    */
-  parseDateTime(datetime: Date | string): Date {
-    return typeof datetime === 'string'
-      ? parse(datetime as string, DATE_TIME_FORMAT, new Date())
-      : datetime;
-  }
+  last_online: string;
 }
-
-export default Profile;
