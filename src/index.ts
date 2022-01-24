@@ -9,13 +9,14 @@ import HttpService from './http/HttpService';
 import { FastMatchTeaserResponse } from './http/responses/FastMatchTeaserResponse';
 import { GetMatchResponse } from './http/responses/GetMatchResponse';
 import { GetUserProfileResponse } from './http/responses/GetUserProfileResponse';
+import { LikedUsersResponse } from './http/responses/LikedUsersResponse';
 import { LoadAllMatchesResponse } from './http/responses/LoadAllMatchesResponse';
 import { Recommendations } from './http/responses/Recommendations';
 import Update, { UpdateInterface } from './http/responses/Update';
 import LikePreview from './models/LikePreview';
 import Match from './models/Match';
 import Profile from './models/Profile';
-import User from './models/User';
+import User, { UserInterface } from './models/User';
 
 export interface TinderJsConfig {
   xAuthToken?: string;
@@ -157,6 +158,27 @@ class TinderJS {
         await this.HttpClient.get<GetUserProfileResponse>(`/user/${userID}`)
       ).results,
     );
+  }
+
+  /**
+   * Fetches the own profile user from the Tinder API
+   *
+   * @return {*}  {Promise<User>} The self user
+   * @memberof TinderJS
+   */
+  public async getSelfUser(): Promise<User> {
+    return new User(await this.HttpClient.get<UserInterface>('/profile'));
+  }
+
+  /**
+   * Fetches all liked users from the Tinder API
+   *
+   * @return {*}  {Promise<User[]>} All liked users
+   * @memberof TinderJS
+   */
+  public async getLikedUsers(): Promise<User[]> {
+    const result = await this.HttpClient.get<LikedUsersResponse>('/v2/my-likes');
+    return result.data.results.map(user => new User(user));
   }
 }
 

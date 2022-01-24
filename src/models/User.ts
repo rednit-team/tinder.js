@@ -43,15 +43,15 @@ export interface UserInterface {
   /**
    * The bio of an user
    */
-  bio: string;
+  bio?: string;
   /**
    * The birth date of an user
    */
-  birth_date: Date | string;
+  birth_date?: Date | string;
   /**
    * The name of an user
    */
-  name: string;
+  name?: string;
   /**
    * The Job of an user
    */
@@ -67,7 +67,7 @@ export interface UserInterface {
   /**
    * The gender of an user
    */
-  gender: number;
+  gender?: number;
   /**
    * If the gender of an user should be displayed in the profile
    */
@@ -83,15 +83,15 @@ export interface UserInterface {
   /**
    * The ping time of the user
    */
-  ping_time: string;
+  ping_time?: string;
   /**
    * All badges of the user
    */
-  badges: BadgeInterface[];
+  badges?: BadgeInterface[];
   /**
    * All photos of the user
    */
-  photos: UserPhotoInterface[];
+  photos?: UserPhotoInterface[];
   /**
    * All common likes of the user
    */
@@ -115,7 +115,7 @@ export interface UserInterface {
   /**
    * The ID of the user
    */
-  _id: string;
+  _id?: string;
   /**
    * If the user owns tinder U
    */
