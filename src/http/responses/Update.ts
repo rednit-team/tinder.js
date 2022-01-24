@@ -1,5 +1,5 @@
 import { MatchInterface } from '../../models/Match';
-import {MessageInterface} from '../../models/Message';
+import { MessageInterface } from '../../models/Message';
 
 /**
  * The response of the /update endpoint
@@ -36,7 +36,7 @@ class Update {
       }
     }
     this.new_messages = newMessages;
-    this.new_matches = newMatches
+    this.new_matches = newMatches;
   }
 }
 
